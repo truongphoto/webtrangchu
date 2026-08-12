@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang Chủ - Ngô Quang Trường</title>
+    <title>Trung Gian Liên Kết - Ngô Quang Trường</title>
     <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ---------- RESET & CƠ BẢN ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -31,13 +30,11 @@
             border-radius: 60px 60px 40px 40px;
             padding: 30px 25px 20px;
             box-shadow: 0 25px 50px -12px rgba(0, 40, 80, 0.3);
-            transition: all 0.3s ease;
             text-align: center;
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
-        /* ---------- HEADER / LOGO ---------- */
         .header {
             display: flex;
             align-items: center;
@@ -90,7 +87,6 @@
             color: #d4a017;
             text-decoration: underline;
         }
-        /* ---------- TIÊU ĐỀ CHÍNH ---------- */
         .main-title {
             font-size: 2.2rem;
             font-weight: 700;
@@ -103,7 +99,6 @@
             color: #d4a017;
             margin: 0 6px;
         }
-        /* ---------- NÚT LỰA CHỌN KHOA ---------- */
         .choice-grid {
             display: flex;
             flex-wrap: wrap;
@@ -150,7 +145,6 @@
             box-shadow: 0 15px 30px -10px #1a6b50;
             background: #bde0d0;
         }
-        /* ---------- MÃ QR (ẢNH TĨNH) ---------- */
         .qr-container {
             margin: 15px 0 5px;
             padding: 15px;
@@ -181,7 +175,6 @@
             color: #2a6b9e;
             margin-right: 6px;
         }
-        /* ---------- PHẦN HIỂN THỊ LINK ---------- */
         .links-section {
             display: none;
             margin: 20px 0 10px;
@@ -242,7 +235,6 @@
             margin-left: auto;
             color: #d4a017;
         }
-        /* nút quay lại */
         .back-btn {
             background: transparent;
             border: 2px solid #2a6b9e;
@@ -266,7 +258,6 @@
             border-color: #2a6b9e;
             transform: scale(1.02);
         }
-        /* ---------- FOOTER ---------- */
         .footer {
             margin-top: 25px;
             padding-top: 15px;
@@ -282,7 +273,6 @@
             margin-right: 6px;
             color: #d4a017;
         }
-        /* ---------- RESPONSIVE ---------- */
         @media (max-width: 600px) {
             .container { padding: 20px 15px; }
             .main-title { font-size: 1.7rem; }
@@ -296,17 +286,17 @@
 </head>
 <body>
     <div class="container" id="app">
-        <!-- HEADER với LOGO -->
+        <!-- HEADER -->
         <div class="header">
             <img src="logo.png" alt="Logo GPP" class="logo-img" />
-            <span class="author-name"><i class="fas fa-user-astronaut"></i>TRƯỜNG GPP:PHẦN MỀM NỘI BỘ NHÓM Y DƯỢC TIỀN GIANG</span>
+            <span class="author-name"><i class="fas fa-user-astronaut"></i> Ngô Quang Trường</span>
         </div>
         <div class="contact">
             <span><i class="fas fa-phone-alt"></i> <a href="tel:0829076979">0829076979</a></span>
             <span><i class="fab fa-zalo"></i> <a href="https://zalo.me/truongphotoart" target="_blank">truongphotoart</a></span>
         </div>
 
-        <!-- TRANG CHỦ: CHỌN KHOA -->
+        <!-- TRANG CHỦ -->
         <div id="home">
             <div class="main-title">
                 <i class="fas fa-stethoscope"></i> CHỌN CHUYÊN KHOA CỦA BẠN <i class="fas fa-flask"></i>
@@ -319,8 +309,6 @@
                     <i class="fas fa-capsules"></i> KHOA DƯỢC
                 </button>
             </div>
-
-            <!-- KHU VỰC MÃ QR (ảnh tĩnh) -->
             <div class="qr-container">
                 <img src="qr.png" alt="Mã QR truy cập trang" />
                 <div class="qr-caption">
@@ -329,7 +317,7 @@
             </div>
         </div>
 
-        <!-- PHẦN LINK (ẩn) -->
+        <!-- KHOA Y -->
         <div id="links-y" class="links-section">
             <h2><i class="fas fa-heartbeat"></i> Y KHOA</h2>
             <a href="https://truongphoto.github.io/tra-cuu-ya-khao/" target="_blank" class="link-item">
@@ -339,6 +327,7 @@
             <button class="back-btn" onclick="goHome()"><i class="fas fa-arrow-left"></i> Quay lại</button>
         </div>
 
+        <!-- KHOA DƯỢC (thứ tự mới) -->
         <div id="links-d" class="links-section">
             <h2><i class="fas fa-pills"></i> DƯỢC KHOA</h2>
             <a href="https://truongphoto.github.io/tracuuthuocthietyeu/" target="_blank" class="link-item">
@@ -347,6 +336,10 @@
             </a>
             <a href="https://truongphoto.github.io/camnangthamkhaodieutri/" target="_blank" class="link-item">
                 <i class="fas fa-book-medical"></i> CẨM NANG THAM KHẢO ĐIỀU TRỊ
+                <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="https://truongphoto.github.io/Tra-c-u-nh-m-thu-c/" target="_blank" class="link-item">
+                <i class="fas fa-search"></i> TRA CỨU NHÓM THUỐC
                 <span class="arrow"><i class="fas fa-arrow-right"></i></span>
             </a>
             <a href="https://truongphoto.github.io/truonggpp/" target="_blank" class="link-item">
@@ -361,7 +354,7 @@
             <span><i class="fas fa-copyright"></i> Ngô Quang Trường</span>
             <span><i class="fas fa-phone"></i> 0829076979</span>
             <span><i class="fab fa-zalo"></i> truongphotoart</span>
-            <span><i class="fas fa-globe"></i> TRANG CHỦ </span>
+            <span><i class="fas fa-globe"></i> Trang trung gian liên kết</span>
         </div>
     </div>
 
@@ -375,12 +368,10 @@
                 document.getElementById('links-d').classList.add('active');
             }
         }
-
         function goHome() {
             document.querySelectorAll('.links-section').forEach(el => el.classList.remove('active'));
             document.getElementById('home').style.display = 'block';
         }
-
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('home').style.display = 'block';
         });
