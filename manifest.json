@@ -1,28 +1,21 @@
 {
-  "background_color": "#ffffff",
-  "description": "Trang chủ Ngô Quang Trường - Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược",
-  "dir": "ltr",
-  "display": "standalone",
   "name": "TRƯỜNG GPP",
-  "orientation": "any",
-  "scope": "/",
-  "short_name": "truongphoto",
-  "start_url": "/",
+  "short_name": "TRƯỜNG GPP",
+  "start_url": "https://truongphoto.github.io/webtrangchu/",
+  "display": "standalone",
+  "background_color": "#ffffff",
   "theme_color": "#ffffff",
+  "description": "Trang chủ Ngô Quang Trường - Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược",
   "icons": [
     {
-      "src": "https://truongphoto.github.io/webtrangchu/logo.png",
-      "type": "image/png",
-      "sizes": "995x1000",
-      "isSquare": false,
-      "isPng": true,
-      "isWebp": false,
-      "isJpg": false,
-      "width": 995,
-      "is512x512": false,
-      "is256x256": false,
-      "is192x192": false
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
-  ],
-  "id": "truuonggpp"
+  ]
 }
