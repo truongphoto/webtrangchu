@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Trang chủ Ngô Quang Trường - Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược" />
     <title>TRANG CHỦ - Ngô Quang Trường</title>
     
-    <!-- 🔎 PC: Thẻ hiển thị favicon trên trình duyệt máy tính -->
+    <!-- Favicon -->
     <link rel="icon" href="logo.png" type="image/png" />
     <link rel="shortcut icon" href="logo.png" type="image/png" />
 
-    <!-- 🍏 iOS: Thẻ bắt buộc để iPhone/iPad nhận icon khi tạo lối tắt -->
+    <!-- Apple Touch Icon (iOS) -->
     <link rel="apple-touch-icon" href="logo.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="logo.png" />
 
-    <!-- 🤖 Android: Định hình giao diện khi tạo ứng dụng lối tắt -->
+    <!-- Android -->
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="theme-color" content="#ffffff" /> <!-- Thay màu thanh điều hướng nếu muốn -->
+    <meta name="theme-color" content="#ffffff" />
 
     <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -27,20 +28,28 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Quicksand', sans-serif;
             background: linear-gradient(145deg, #e6f0fa 0%, #c7dbea 100%);
+            background-attachment: fixed;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
+
         .container {
             width: 100%;
             max-width: 800px;
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-radius: 60px 60px 40px 40px;
             padding: 30px 25px 20px;
             box-shadow: 0 25px 50px -12px rgba(0, 40, 80, 0.3);
@@ -49,6 +58,7 @@
             overflow: hidden;
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
+
         .header {
             display: flex;
             align-items: center;
@@ -57,12 +67,17 @@
             margin-bottom: 12px;
             flex-wrap: wrap;
         }
+
         .logo-img {
             height: 70px;
             width: auto;
+            max-width: 100%;
             object-fit: contain;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+            display: block;
+            flex-shrink: 0;
         }
+
         .author-name {
             font-size: 1.2rem;
             font-weight: 700;
@@ -72,11 +87,14 @@
             border-radius: 40px;
             border: 1px solid rgba(255, 215, 0, 0.3);
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
+
         .author-name i {
             color: #d4a017;
             margin-right: 8px;
         }
+
         .contact {
             font-size: 0.9rem;
             color: #0a2a44;
@@ -88,19 +106,25 @@
             gap: 15px;
             flex-wrap: wrap;
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             border: 1px solid rgba(212, 160, 23, 0.3);
             margin-top: 4px;
         }
+
         .contact a {
             color: #0a2a44;
             text-decoration: none;
             font-weight: 600;
-            transition: 0.2s;
+            transition: 0.2s ease;
+            outline: none;
         }
-        .contact a:hover {
+
+        .contact a:hover,
+        .contact a:focus {
             color: #d4a017;
             text-decoration: underline;
         }
+
         .main-title {
             font-size: 2.2rem;
             font-weight: 700;
@@ -109,10 +133,12 @@
             letter-spacing: 1px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
+
         .main-title i {
             color: #d4a017;
             margin: 0 6px;
         }
+
         .choice-grid {
             display: flex;
             flex-wrap: wrap;
@@ -120,6 +146,7 @@
             gap: 25px;
             margin: 30px 0 20px;
         }
+
         .choice-btn {
             background: white;
             border: none;
@@ -137,28 +164,38 @@
             flex: 1 1 180px;
             justify-content: center;
             border: 2px solid transparent;
+            font-family: 'Quicksand', sans-serif;
+            outline: none;
         }
+
         .choice-btn i {
             font-size: 2.2rem;
         }
+
         .choice-btn.y {
             background: #d9e6f2;
             border-color: #2a6b9e;
         }
-        .choice-btn.y:hover {
+
+        .choice-btn.y:hover,
+        .choice-btn.y:focus {
             transform: scale(1.04) rotate(-2deg);
             box-shadow: 0 15px 30px -10px #1a4f7a;
             background: #c0d9f0;
         }
+
         .choice-btn.d {
             background: #d4e8e0;
             border-color: #2a8c6b;
         }
-        .choice-btn.d:hover {
+
+        .choice-btn.d:hover,
+        .choice-btn.d:focus {
             transform: scale(1.04) rotate(2deg);
             box-shadow: 0 15px 30px -10px #1a6b50;
             background: #bde0d0;
         }
+
         .qr-container {
             margin: 15px 0 5px;
             padding: 15px;
@@ -166,8 +203,10 @@
             border-radius: 30px;
             display: inline-block;
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             border: 1px solid rgba(42, 107, 158, 0.15);
         }
+
         .qr-container img {
             width: 150px;
             height: 150px;
@@ -178,6 +217,7 @@
             padding: 8px;
             box-shadow: 0 6px 16px rgba(0,0,0,0.08);
         }
+
         .qr-caption {
             margin-top: 8px;
             font-size: 0.95rem;
@@ -185,10 +225,12 @@
             color: #0a2a44;
             letter-spacing: 0.5px;
         }
+
         .qr-caption i {
             color: #2a6b9e;
             margin-right: 6px;
         }
+
         .links-section {
             display: none;
             margin: 20px 0 10px;
@@ -196,28 +238,42 @@
             background: rgba(255, 255, 255, 0.6);
             border-radius: 50px;
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 215, 0, 0.2);
             animation: fadeSlide 0.35s ease;
         }
+
         .links-section.active {
             display: block;
         }
+
         @keyframes fadeSlide {
-            0% { opacity: 0; transform: translateY(18px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% { 
+                opacity: 0; 
+                transform: translateY(18px); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
+
         .links-section h2 {
             font-size: 1.6rem;
             font-weight: 600;
             color: #0a2a44;
             margin-bottom: 20px;
         }
+
         .links-section h2 i {
             margin-right: 10px;
             color: #d4a017;
         }
+
         .link-item {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 16px;
             background: white;
             padding: 16px 24px;
             margin: 14px 0;
@@ -230,25 +286,30 @@
             transition: all 0.2s ease;
             border-left: 6px solid #d4a017;
             text-align: left;
-            display: flex;
-            align-items: center;
-            gap: 16px;
+            outline: none;
         }
+
         .link-item i {
             font-size: 1.8rem;
             width: 2rem;
+            flex-shrink: 0;
             color: #2a6b9e;
         }
-        .link-item:hover {
+
+        .link-item:hover,
+        .link-item:focus {
             transform: translateX(8px) scale(1.01);
             box-shadow: 0 12px 24px -8px rgba(0, 40, 80, 0.2);
             background: #f0f7ff;
             border-left-color: #2a6b9e;
         }
+
         .link-item .arrow {
             margin-left: auto;
             color: #d4a017;
+            flex-shrink: 0;
         }
+
         .back-btn {
             background: transparent;
             border: 2px solid #2a6b9e;
@@ -258,20 +319,26 @@
             font-weight: 700;
             font-size: 1.0rem;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.2s ease;
             margin-top: 20px;
             display: inline-flex;
             align-items: center;
             gap: 10px;
             background: rgba(255,255,255,0.3);
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            font-family: 'Quicksand', sans-serif;
+            outline: none;
         }
-        .back-btn:hover {
+
+        .back-btn:hover,
+        .back-btn:focus {
             background: #2a6b9e;
             color: white;
             border-color: #2a6b9e;
             transform: scale(1.02);
         }
+
         .footer {
             margin-top: 25px;
             padding-top: 15px;
@@ -283,26 +350,149 @@
             justify-content: center;
             gap: 12px 25px;
         }
+
         .footer i {
             margin-right: 6px;
             color: #d4a017;
         }
+
         .service-info {
             font-size: 0.85rem;
             color: #2a6b9e;
             font-weight: 600;
             font-style: italic;
             margin-top: 4px;
+            line-height: 1.4;
         }
+
+        /* === MOBILE OPTIMIZATION === */
         @media (max-width: 600px) {
-            .container { padding: 20px 15px; }
-            .main-title { font-size: 1.7rem; }
-            .choice-btn { padding: 16px 25px; font-size: 1.4rem; flex: 1 1 100%; }
-            .link-item { font-size: 1.0rem; padding: 14px 18px; }
-            .contact { font-size: 0.8rem; }
-            .logo-img { height: 50px; }
-            .qr-container img { width: 120px; height: 120px; }
-            .service-info { font-size: 0.75rem; }
+            .container { 
+                padding: 20px 15px 15px;
+                border-radius: 40px 40px 30px 30px;
+            }
+
+            .header {
+                gap: 15px;
+                margin-bottom: 10px;
+            }
+
+            .logo-img { 
+                height: 65px;  /* ← TĂNG từ 50px lên 65px để logo hiển thị rõ hơn */
+                max-width: 100%;
+            }
+
+            .author-name {
+                font-size: 1rem;
+                padding: 6px 16px;
+                flex: 1 1 100%;
+                min-width: 250px;
+            }
+
+            .main-title { 
+                font-size: 1.7rem;
+                margin: 12px 0 10px;
+            }
+
+            .choice-btn { 
+                padding: 16px 25px;
+                font-size: 1.4rem;
+                flex: 1 1 100%;
+                gap: 12px;
+            }
+
+            .choice-btn i {
+                font-size: 1.8rem;
+            }
+
+            .choice-grid {
+                gap: 15px;
+                margin: 25px 0 15px;
+            }
+
+            .link-item { 
+                font-size: 1.0rem;
+                padding: 14px 18px;
+                gap: 12px;
+            }
+
+            .link-item i {
+                font-size: 1.5rem;
+            }
+
+            .contact { 
+                font-size: 0.8rem;
+                padding: 4px 14px;
+                gap: 12px;
+            }
+
+            .qr-container {
+                margin: 12px 0 5px;
+                padding: 12px;
+            }
+
+            .qr-container img { 
+                width: 130px;
+                height: 130px;
+            }
+
+            .service-info { 
+                font-size: 0.75rem;
+                line-height: 1.3;
+            }
+
+            .back-btn {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+                margin-top: 15px;
+            }
+
+            .footer {
+                gap: 8px 18px;
+                font-size: 0.8rem;
+            }
+
+            .links-section h2 {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+            }
+
+            .qr-caption {
+                font-size: 0.9rem;
+                margin-top: 6px;
+            }
+        }
+
+        /* Tablet optimization */
+        @media (max-width: 768px) and (min-width: 601px) {
+            .container {
+                max-width: 90%;
+            }
+
+            .logo-img {
+                height: 65px;
+            }
+
+            .main-title {
+                font-size: 1.9rem;
+            }
+
+            .choice-btn {
+                flex: 1 1 45%;
+            }
+        }
+
+        /* Prevent image drag on mobile */
+        img {
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* Accessibility improvements */
+        button:focus,
+        a:focus {
+            outline: 2px solid #d4a017;
+            outline-offset: 2px;
         }
     </style>
 </head>
@@ -310,13 +500,29 @@
     <div class="container" id="app">
         <!-- HEADER -->
         <div class="header">
-            <img src="logo.png" alt="Logo GPP" class="logo-img" />
-            <span class="author-name"><i class="fas fa-user-astronaut"></i> TRƯỜNG GPP:PHẦN MỀM NỘI BỘ NHÓM Y DƯỢC TIỀN GIANG</span>
+            <img 
+                src="logo.png" 
+                alt="Logo GPP Ngô Quang Trường" 
+                class="logo-img"
+                loading="lazy"
+                onerror="this.style.display='none'"
+            />
+            <span class="author-name">
+                <i class="fas fa-user-astronaut"></i> TRƯỜNG GPP: PHẦN MỀM NỘI BỘ NHÓM Y DƯỢC TIỀN GIANG
+            </span>
         </div>
+
         <div class="contact">
-            <span><i class="fas fa-phone-alt"></i> <a href="tel:0829076979">0829076979</a></span>
-            <span><i class="fab fa-zalo"></i> <a href="https://zalo.me/truongphotoart" target="_blank">TRUONG GPP</a></span>
+            <span>
+                <i class="fas fa-phone-alt"></i> 
+                <a href="tel:0829076979" title="Gọi ngay">0829076979</a>
+            </span>
+            <span>
+                <i class="fab fa-zalo"></i> 
+                <a href="https://zalo.me/truongphotoart" target="_blank" title="Nhắn tin Zalo">TRUONG GPP</a>
+            </span>
         </div>
+
         <div class="service-info">
             <i class="fas fa-info-circle"></i> Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược & Hiệu chuẩn TBYT
         </div>
@@ -326,16 +532,23 @@
             <div class="main-title">
                 <i class="fas fa-stethoscope"></i> CHỌN CHUYÊN KHOA CỦA BẠN <i class="fas fa-flask"></i>
             </div>
+
             <div class="choice-grid">
-                <button class="choice-btn y" onclick="showLinks('y')">
+                <button class="choice-btn y" onclick="showLinks('y')" title="Khoa Y">
                     <i class="fas fa-user-md"></i> KHOA Y
                 </button>
-                <button class="choice-btn d" onclick="showLinks('d')">
+                <button class="choice-btn d" onclick="showLinks('d')" title="Khoa Dược">
                     <i class="fas fa-capsules"></i> KHOA DƯỢC
                 </button>
             </div>
+
             <div class="qr-container">
-                <img src="qr.png" alt="Mã QR truy cập trang" />
+                <img 
+                    src="qr.png" 
+                    alt="Mã QR truy cập trang" 
+                    loading="lazy"
+                    onerror="this.style.display='none'"
+                />
                 <div class="qr-caption">
                     <i class="fas fa-qrcode"></i> Mở ứng dụng trên điện thoại
                 </div>
@@ -345,41 +558,85 @@
         <!-- KHOA Y -->
         <div id="links-y" class="links-section">
             <h2><i class="fas fa-heartbeat"></i> Y KHOA</h2>
-            <a href="https://truongphoto.github.io/tra-cuu-ya-khao/" target="_blank" class="link-item">
-                <i class="fas fa-notes-medical"></i> Trắc Nghiệm Y Khoa
+            <a 
+                href="https://truongphoto.github.io/tra-cuu-ya-khao/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="link-item"
+                title="Trắc Nghiệm Y Khoa"
+            >
+                <i class="fas fa-notes-medical"></i> 
+                <span>Trắc Nghiệm Y Khoa</span>
                 <span class="arrow"><i class="fas fa-arrow-right"></i></span>
             </a>
-            <button class="back-btn" onclick="goHome()"><i class="fas fa-arrow-left"></i> Quay lại</button>
+            <button class="back-btn" onclick="goHome()" title="Quay lại trang chủ">
+                <i class="fas fa-arrow-left"></i> Quay lại
+            </button>
         </div>
 
-        <!-- KHOA DƯỢC (thứ tự mới) -->
+        <!-- KHOA DƯỢC -->
         <div id="links-d" class="links-section">
             <h2><i class="fas fa-pills"></i> DƯỢC KHOA</h2>
-            <a href="https://truongphoto.github.io/tracuuthuocthietyeu/" target="_blank" class="link-item">
-                <i class="fas fa-list-ul"></i> TRA CỨU DANH MỤC THUỐC THIẾT YẾU
+            
+            <a 
+                href="https://truongphoto.github.io/tracuuthuocthietyeu/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="link-item"
+                title="Tra cứu danh mục thuốc thiết yếu"
+            >
+                <i class="fas fa-list-ul"></i> 
+                <span>TRA CỨU DANH MỤC THUỐC THIẾT YẾU</span>
                 <span class="arrow"><i class="fas fa-arrow-right"></i></span>
             </a>
-            <a href="https://truongphoto.github.io/camnangthamkhaodieutri/" target="_blank" class="link-item">
-                <i class="fas fa-book-medical"></i> CẨM NANG THAM KHẢO ĐIỀU TRỊ
+
+            <a 
+                href="https://truongphoto.github.io/camnangthamkhaodieutri/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="link-item"
+                title="Cẩm nang tham khảo điều trị"
+            >
+                <i class="fas fa-book-medical"></i> 
+                <span>CẨM NANG THAM KHẢO ĐIỀU TRỊ</span>
                 <span class="arrow"><i class="fas fa-arrow-right"></i></span>
             </a>
-            <a href="https://truongphoto.github.io/Tra-c-u-nh-m-thu-c/" target="_blank" class="link-item">
-                <i class="fas fa-search"></i> TRA CỨU NHÓM THUỐC
+
+            <a 
+                href="https://truongphoto.github.io/Tra-c-u-nh-m-thu-c/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="link-item"
+                title="Tra cứu nhóm thuốc"
+            >
+                <i class="fas fa-search"></i> 
+                <span>TRA CỨU NHÓM THUỐC</span>
                 <span class="arrow"><i class="fas fa-arrow-right"></i></span>
             </a>
-            <a href="https://truongphoto.github.io/truonggpp/" target="_blank" class="link-item">
-                <i class="fas fa-gamepad"></i> GAME CÂU HỎI GPP
+
+            <a 
+                href="https://truongphoto.github.io/truonggpp/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="link-item"
+                title="Game câu hỏi GPP"
+            >
+                <i class="fas fa-gamepad"></i> 
+                <span>GAME CÂU HỎI GPP</span>
                 <span class="arrow"><i class="fas fa-arrow-right"></i></span>
             </a>
-            <button class="back-btn" onclick="goHome()"><i class="fas fa-arrow-left"></i> Quay lại</button>
+
+            <button class="back-btn" onclick="goHome()" title="Quay lại trang chủ">
+                <i class="fas fa-arrow-left"></i> Quay lại
+            </button>
         </div>
 
         <!-- FOOTER -->
         <div class="footer">
             <span><i class="fas fa-copyright"></i> Ngô Quang Trường</span>
             <span><i class="fas fa-phone"></i> 0829076979</span>
-            <span><i class="fab fa-zalo"></i> Zalo:truongphotoart</span>
-            <span><i class="fas fa-globe"></i> TRANG CHỦ </span>
+            <span><i class="fab fa-zalo"></i> Zalo: truongphotoart</span>
+            <span><i class="fas fa-globe"></i> TRANG CHỦ</span>
         </div>
     </div>
 
@@ -393,12 +650,22 @@
                 document.getElementById('links-d').classList.add('active');
             }
         }
+
         function goHome() {
             document.querySelectorAll('.links-section').forEach(el => el.classList.remove('active'));
             document.getElementById('home').style.display = 'block';
         }
+
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('home').style.display = 'block';
+        });
+
+        // Prevent double-tap zoom on buttons (mobile optimization)
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                this.click();
+            }, false);
         });
     </script>
 </body>
