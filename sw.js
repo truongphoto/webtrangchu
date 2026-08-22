@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'gpp-pwa-v4-manifest-json';
+const CACHE_VERSION = 'gpp-pwa-v5-thu-gian';
 const APP_SHELL = [
   './',
   './index.html',

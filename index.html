@@ -7,11 +7,11 @@
     <title>TRANG CHỦ - Ngô Quang Trường</title>
     
     <!-- PWA Manifest & Icons -->
-    <link rel="manifest" href="./manifest.json?v=4" />
-    <link rel="icon" href="./favicon-32.png?v=4" sizes="32x32" type="image/png" />
-    <link rel="icon" href="./app-icon-192.png?v=4" sizes="192x192" type="image/png" />
-    <link rel="shortcut icon" href="./favicon-32.png?v=4" type="image/png" />
-    <link rel="apple-touch-icon" href="./app-icon-192.png?v=4" />
+    <link rel="manifest" href="./manifest.json?v=5" />
+    <link rel="icon" href="./favicon-32-v3.png?v=5" sizes="32x32" type="image/png" />
+    <link rel="icon" href="./app-icon-192-v3.png?v=5" sizes="192x192" type="image/png" />
+    <link rel="shortcut icon" href="./favicon-32-v3.png?v=5" type="image/png" />
+    <link rel="apple-touch-icon" href="./app-icon-192-v3.png?v=5" />
 
     <!-- Mobile App Settings -->
     <meta name="mobile-web-app-capable" content="yes" />
@@ -43,6 +43,15 @@
         .choice-btn.y:hover, .choice-btn.y:focus { transform: scale(1.04) rotate(-2deg); box-shadow: 0 15px 30px -10px #1a4f7a; background: #c0d9f0; }
         .choice-btn.d { background: #d4e8e0; border-color: #2a8c6b; }
         .choice-btn.d:hover, .choice-btn.d:focus { transform: scale(1.04) rotate(2deg); box-shadow: 0 15px 30px -10px #1a6b50; background: #bde0d0; }
+        .choice-btn.t { background: #f4e3ef; border-color: #9a5b8f; color: #5a3154; }
+        .choice-btn.t i { color: #9a5b8f; }
+        .choice-btn.t:hover, .choice-btn.t:focus { transform: scale(1.04); box-shadow: 0 15px 30px -10px rgba(122, 70, 112, 0.45); background: #ecd4e6; }
+        .links-section.relax { border-color: rgba(154, 91, 143, 0.25); background: rgba(255, 248, 253, 0.78); }
+        .links-section.relax h2 i { color: #9a5b8f; }
+        .links-section.relax .link-item { border-left-color: #9a5b8f; }
+        .links-section.relax .link-item i { color: #9a5b8f; }
+        .links-section.relax .link-item:hover, .links-section.relax .link-item:focus { background: #fff5fc; border-left-color: #d4a017; }
+
         .qr-container { margin: 15px 0 5px; padding: 15px; background: rgba(255, 255, 255, 0.5); border-radius: 30px; display: inline-block; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid rgba(42, 107, 158, 0.15); }
         .qr-container img { width: 150px; height: 150px; display: block; margin: 0 auto; border-radius: 16px; background: white; padding: 8px; box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
         .qr-caption { margin-top: 8px; font-size: 0.95rem; font-weight: 600; color: #0a2a44; letter-spacing: 0.5px; }
@@ -133,7 +142,7 @@
         <!-- TRANG CHỦ -->
         <div id="home">
             <div class="main-title">
-                <i class="fas fa-stethoscope"></i> CHỌN CHUYÊN KHOA CỦA BẠN <i class="fas fa-flask"></i>
+                <i class="fas fa-layer-group"></i> CHỌN NỘI DUNG CỦA BẠN <i class="fas fa-heart"></i>
             </div>
 
             <div class="install-app-wrap" id="installAppWrap">
@@ -149,6 +158,9 @@
                 </button>
                 <button class="choice-btn d" onclick="showLinks('d')" title="Khoa Dược">
                     <i class="fas fa-capsules"></i> KHOA DƯỢC
+                </button>
+                <button class="choice-btn t" onclick="showLinks('t')" title="Thư giãn Y Dược">
+                    <i class="fas fa-mug-hot"></i> THƯ GIÃN
                 </button>
             </div>
 
@@ -201,6 +213,34 @@
             </button>
         </div>
 
+
+        <!-- THƯ GIÃN -->
+        <div id="links-t" class="links-section relax">
+            <h2><i class="fas fa-face-smile-beam"></i> THƯ GIÃN Y DƯỢC</h2>
+
+            <a href="https://truongphoto.github.io/loihay/" target="_blank" rel="noopener noreferrer" class="link-item" title="Lời hay ý đẹp ngành Y Dược">
+                <i class="fas fa-quote-left"></i>
+                <span>1. LỜI HAY Ý ĐẸP</span>
+                <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="https://truongphoto.github.io/truyencuoi/" target="_blank" rel="noopener noreferrer" class="link-item" title="Truyện cười Y-Dược">
+                <i class="fas fa-face-laugh-squint"></i>
+                <span>2. TRUYỆN CƯỜI Y-DƯỢC</span>
+                <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="https://truongphoto.github.io/GAMEVUI/" target="_blank" rel="noopener noreferrer" class="link-item" title="Game Bệnh viện vui">
+                <i class="fas fa-gamepad"></i>
+                <span>3. GAME BỆNH VIỆN VUI</span>
+                <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <button class="back-btn" onclick="goHome()" title="Quay lại trang chủ">
+                <i class="fas fa-arrow-left"></i> Quay lại
+            </button>
+        </div>
+
         <!-- FOOTER -->
         <div class="footer">
             <span><i class="fas fa-copyright"></i> Ngô Quang Trường</span>
@@ -218,6 +258,8 @@
                 document.getElementById('links-y').classList.add('active');
             } else if (type === 'd') {
                 document.getElementById('links-d').classList.add('active');
+            } else if (type === 't') {
+                document.getElementById('links-t').classList.add('active');
             }
         }
 
