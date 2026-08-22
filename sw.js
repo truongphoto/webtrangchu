@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'gpp-pwa-v6-professional-ui';
+const CACHE_VERSION = 'gpp-pwa-v10-drag-attention';
 const APP_SHELL = [
   './',
   './index.html',
@@ -8,7 +8,9 @@ const APP_SHELL = [
   './app-icon-192-v3.png',
   './app-icon-512-v3.png',
   './app-icon-maskable-512-v3.png',
-  './favicon-32-v3.png'
+  './favicon-32-v3.png',
+  './chatbot.css',
+  './chatbot.js'
 ];
 
 self.addEventListener('install', (event) => {

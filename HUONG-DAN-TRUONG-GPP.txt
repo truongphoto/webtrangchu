@@ -1,0 +1,12 @@
+TRƯỜNG GPP - CHATBOX ĐÃ NỐI VERCEL
+
+Website này đã được cấu hình sẵn tới:
+https://truong-gpp-vercel-backend.vercel.app/api/chat
+
+Backend Vercel: truong-gpp-vercel-backend
+Biến bí mật dùng trên Vercel: GEMINI_API_KEY
+
+LƯU Ý:
+- Không đặt Gemini API key vào index.html hoặc chatbot.js.
+- Nếu thay API key trên Vercel, hãy Redeploy backend một lần để bản Production nhận key mới.
+- Sau khi upload bản website này lên GitHub Pages, nếu trình duyệt còn hiện bản cũ, tải lại trang hoặc đóng/mở lại ứng dụng PWA. Cache đã được nâng lên v8.
