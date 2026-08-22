@@ -7,11 +7,11 @@
     <title>TRANG CHỦ - Ngô Quang Trường</title>
     
     <!-- PWA Manifest & Icons -->
-    <link rel="manifest" href="./manifest.json?v=5" />
-    <link rel="icon" href="./favicon-32-v3.png?v=5" sizes="32x32" type="image/png" />
-    <link rel="icon" href="./app-icon-192-v3.png?v=5" sizes="192x192" type="image/png" />
-    <link rel="shortcut icon" href="./favicon-32-v3.png?v=5" type="image/png" />
-    <link rel="apple-touch-icon" href="./app-icon-192-v3.png?v=5" />
+    <link rel="manifest" href="./manifest.json?v=6" />
+    <link rel="icon" href="./favicon-32-v3.png?v=6" sizes="32x32" type="image/png" />
+    <link rel="icon" href="./app-icon-192-v3.png?v=6" sizes="192x192" type="image/png" />
+    <link rel="shortcut icon" href="./favicon-32-v3.png?v=6" type="image/png" />
+    <link rel="apple-touch-icon" href="./app-icon-192-v3.png?v=6" />
 
     <!-- Mobile App Settings -->
     <meta name="mobile-web-app-capable" content="yes" />
@@ -112,7 +112,221 @@
         img { user-select: none; -webkit-user-drag: none; }
         /* Accessibility improvements */
         button:focus, a:focus { outline: 2px solid #d4a017; outline-offset: 2px; }
-    </style>
+    
+/* =========================================================
+   V2 PROFESSIONAL MEDICAL PORTAL
+   CHỈ ĐỔI GIAO DIỆN - KHÔNG XÓA / KHÔNG ĐỔI NỘI DUNG CHỮ
+   ========================================================= */
+:root{
+    --navy:#123b56;
+    --blue:#226b9a;
+    --blue-soft:#eaf4fb;
+    --green:#2f8a68;
+    --green-soft:#eaf6f0;
+    --purple:#8c5f87;
+    --purple-soft:#f6eef5;
+    --ink:#173449;
+    --muted:#667b89;
+    --line:#dce7ed;
+}
+html{background:#eef5f8!important}
+body{
+    font-family:"Segoe UI",Arial,Helvetica,sans-serif!important;
+    min-height:100vh!important;
+    align-items:flex-start!important;
+    padding:22px 16px 28px!important;
+    color:var(--ink)!important;
+    background:
+      radial-gradient(circle at 12% 8%,rgba(47,138,104,.10),transparent 26rem),
+      radial-gradient(circle at 90% 4%,rgba(34,107,154,.10),transparent 30rem),
+      linear-gradient(180deg,#f9fcfd 0%,#eef5f8 100%)!important;
+}
+.container{
+    width:min(1120px,100%)!important;max-width:1120px!important;margin:0 auto!important;
+    padding:0 0 18px!important;border-radius:26px!important;overflow:hidden!important;
+    text-align:left!important;background:rgba(255,255,255,.96)!important;
+    border:1px solid rgba(31,92,126,.10)!important;
+    box-shadow:0 24px 64px rgba(31,72,98,.13)!important;
+}
+.header{
+    justify-content:flex-start!important;flex-wrap:nowrap!important;gap:18px!important;
+    margin:0!important;padding:20px 26px 10px!important;
+    background:linear-gradient(135deg,#fff 0%,#f7fbfc 100%)!important;
+}
+.logo-img{height:66px!important;max-width:210px!important;filter:none!important}
+.author-name{
+    flex:1!important;min-width:0!important;font-size:1.03rem!important;line-height:1.45!important;
+    color:var(--navy)!important;padding:12px 16px!important;border-radius:14px!important;
+    background:#f3f8fb!important;border:1px solid #e1edf2!important;box-shadow:none!important;
+}
+.author-name i{color:var(--blue)!important}
+.contact{
+    margin:0 26px!important;padding:8px 12px!important;border-radius:12px!important;gap:18px!important;
+    justify-content:flex-start!important;background:#fff!important;border:1px solid var(--line)!important;
+    box-shadow:none!important;color:var(--navy)!important;
+}
+.contact a{color:var(--navy)!important;font-weight:700!important}
+.contact a:hover,.contact a:focus{color:var(--blue)!important;text-decoration:none!important}
+.service-info{
+    margin:9px 26px 0!important;padding:0 2px!important;font-size:.82rem!important;
+    font-style:normal!important;font-weight:600!important;color:var(--muted)!important;
+}
+#home{padding:4px 26px 8px!important}
+.main-title{
+    margin:26px 0 16px!important;font-size:1.55rem!important;line-height:1.3!important;
+    letter-spacing:0!important;color:var(--navy)!important;text-shadow:none!important;text-align:left!important;
+}
+.main-title i{color:var(--green)!important}
+.install-app-wrap{margin:0 0 18px!important;align-items:flex-start!important;gap:6px!important}
+.install-app-btn{
+    min-height:43px!important;padding:10px 17px!important;border-radius:12px!important;
+    font-family:"Segoe UI",Arial,Helvetica,sans-serif!important;font-size:.92rem!important;
+    background:var(--navy)!important;box-shadow:0 8px 18px rgba(18,59,86,.14)!important;
+}
+.install-app-btn:hover,.install-app-btn:focus{
+    transform:translateY(-1px)!important;box-shadow:0 10px 22px rgba(18,59,86,.18)!important
+}
+.install-app-btn.ready{background:var(--green)!important}
+.install-app-hint{max-width:720px!important;font-size:.78rem!important;color:var(--muted)!important}
+
+/* 3 nhóm chính thành card chuyên nghiệp */
+.choice-grid{
+    display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:14px!important;margin:0 0 20px!important;
+}
+.choice-btn{
+    min-height:132px!important;padding:20px 18px!important;flex:none!important;
+    border-radius:18px!important;border:1px solid var(--line)!important;background:#fff!important;
+    box-shadow:0 7px 20px rgba(30,72,98,.07)!important;color:var(--navy)!important;
+    font-family:"Segoe UI",Arial,Helvetica,sans-serif!important;font-size:1.10rem!important;
+    line-height:1.2!important;letter-spacing:0!important;flex-direction:column!important;gap:13px!important;
+    position:relative!important;overflow:hidden!important;isolation:isolate!important;
+}
+.choice-btn::before{
+    content:""!important;position:absolute!important;left:0!important;top:0!important;
+    width:100%!important;height:4px!important;z-index:-1!important;
+}
+.choice-btn i{
+    width:52px!important;height:52px!important;border-radius:15px!important;
+    display:grid!important;place-items:center!important;font-size:1.55rem!important;
+}
+.choice-btn.y::before{background:var(--blue)!important}
+.choice-btn.y i{color:var(--blue)!important;background:var(--blue-soft)!important}
+.choice-btn.d::before{background:var(--green)!important}
+.choice-btn.d i{color:var(--green)!important;background:var(--green-soft)!important}
+.choice-btn.t::before{background:var(--purple)!important}
+.choice-btn.t i{color:var(--purple)!important;background:var(--purple-soft)!important}
+.choice-btn.y:hover,.choice-btn.y:focus,
+.choice-btn.d:hover,.choice-btn.d:focus,
+.choice-btn.t:hover,.choice-btn.t:focus{
+    transform:translateY(-4px)!important;background:#fff!important;
+    box-shadow:0 16px 32px rgba(30,72,98,.13)!important;border-color:#cbdde6!important;
+}
+
+/* QR gọn và hiện đại */
+.qr-container{
+    margin:0!important;padding:13px 16px!important;width:100%!important;display:flex!important;
+    align-items:center!important;gap:14px!important;border-radius:16px!important;background:#f8fbfc!important;
+    border:1px solid var(--line)!important;box-shadow:none!important;
+}
+.qr-container img{
+    width:92px!important;height:92px!important;margin:0!important;padding:5px!important;
+    border-radius:10px!important;box-shadow:none!important;border:1px solid #e3edf1!important;
+}
+.qr-caption{
+    margin:0!important;text-align:left!important;font-size:.92rem!important;color:var(--navy)!important;
+    letter-spacing:0!important;
+}
+
+/* Trang con / danh sách ứng dụng */
+.links-section{
+    margin:20px 26px 8px!important;padding:22px!important;border-radius:20px!important;
+    background:#fbfdfe!important;border:1px solid var(--line)!important;box-shadow:none!important;
+}
+.links-section.relax{background:#fdfbfc!important;border-color:#eadde8!important}
+.links-section h2{
+    margin:0 0 16px!important;font-size:1.28rem!important;font-weight:800!important;
+    color:var(--navy)!important;letter-spacing:0!important;
+}
+.links-section h2 i{
+    width:38px!important;height:38px!important;display:inline-grid!important;place-items:center!important;
+    border-radius:11px!important;margin-right:8px!important;color:var(--blue)!important;background:var(--blue-soft)!important;
+}
+.links-section.relax h2 i{color:var(--purple)!important;background:var(--purple-soft)!important}
+.link-item{
+    min-height:66px!important;margin:9px 0!important;padding:13px 16px!important;border-radius:14px!important;
+    border:1px solid var(--line)!important;border-left:1px solid var(--line)!important;background:#fff!important;
+    box-shadow:none!important;font-size:.96rem!important;font-weight:700!important;color:var(--ink)!important;
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
+}
+.link-item>i{
+    width:42px!important;height:42px!important;display:grid!important;place-items:center!important;
+    border-radius:12px!important;flex:0 0 42px!important;font-size:1.20rem!important;
+    color:var(--blue)!important;background:var(--blue-soft)!important;
+}
+.links-section.relax .link-item>i{color:var(--purple)!important;background:var(--purple-soft)!important}
+.link-item .arrow{color:#91a5b1!important}
+.link-item:hover,.link-item:focus,
+.links-section.relax .link-item:hover,.links-section.relax .link-item:focus{
+    transform:translateY(-2px)!important;background:#fff!important;border-color:#c8dce5!important;
+    box-shadow:0 10px 24px rgba(30,72,98,.08)!important;
+}
+.back-btn{
+    margin-top:14px!important;padding:9px 14px!important;border-radius:11px!important;
+    border:1px solid #c8dce5!important;background:#fff!important;color:var(--navy)!important;
+    font-family:"Segoe UI",Arial,Helvetica,sans-serif!important;font-size:.88rem!important;box-shadow:none!important;
+}
+.back-btn:hover,.back-btn:focus{
+    transform:none!important;background:#edf5f8!important;color:var(--navy)!important;border-color:#b7ced9!important;
+}
+.footer{
+    margin:18px 26px 0!important;padding:15px 0 0!important;justify-content:flex-start!important;
+    gap:8px 22px!important;border-top:1px solid var(--line)!important;font-size:.79rem!important;color:var(--muted)!important;
+}
+.footer i{color:var(--green)!important}
+
+/* Hiển thị mobile */
+@media(max-width:760px){
+    body{padding:10px 8px 18px!important}
+    .container{border-radius:20px!important}
+    .header{padding:15px 14px 8px!important;gap:10px!important;align-items:flex-start!important}
+    .logo-img{height:48px!important;max-width:128px!important}
+    .author-name{min-width:0!important;flex:1!important;font-size:.78rem!important;padding:8px 10px!important;border-radius:11px!important}
+    .contact{margin:0 14px!important;padding:7px 9px!important;gap:10px!important;font-size:.76rem!important}
+    .service-info{margin:7px 14px 0!important;font-size:.70rem!important}
+    #home{padding:2px 14px 5px!important}
+    .main-title{margin:20px 0 13px!important;font-size:1.17rem!important}
+    .install-app-wrap{margin-bottom:13px!important}
+    .install-app-btn{min-height:39px!important;font-size:.82rem!important;padding:8px 13px!important}
+    .choice-grid{grid-template-columns:1fr!important;gap:9px!important}
+    .choice-btn{
+        min-height:72px!important;padding:12px 14px!important;border-radius:14px!important;
+        flex-direction:row!important;justify-content:flex-start!important;font-size:.96rem!important;gap:12px!important;
+    }
+    .choice-btn i{width:42px!important;height:42px!important;border-radius:11px!important;font-size:1.22rem!important}
+    .qr-container{padding:10px!important;gap:10px!important}
+    .qr-container img{width:72px!important;height:72px!important}
+    .qr-caption{font-size:.78rem!important}
+    .links-section{margin:14px 14px 5px!important;padding:15px!important;border-radius:16px!important}
+    .links-section h2{font-size:1.02rem!important;margin-bottom:12px!important}
+    .links-section h2 i{width:33px!important;height:33px!important;border-radius:9px!important}
+    .link-item{min-height:58px!important;padding:10px 11px!important;gap:10px!important;font-size:.79rem!important;border-radius:12px!important}
+    .link-item>i{width:36px!important;height:36px!important;flex-basis:36px!important;border-radius:10px!important;font-size:1rem!important}
+    .back-btn{margin-top:10px!important;font-size:.78rem!important}
+    .footer{margin:14px 14px 0!important;padding-top:12px!important;justify-content:flex-start!important;font-size:.70rem!important}
+}
+@media(min-width:761px) and (max-width:980px){
+    .choice-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:11px!important}
+    .choice-btn{min-height:118px!important;padding:17px 13px!important;font-size:1rem!important}
+}
+
+/* Ổn định font tiếng Việt */
+body,button,a,input,span,div{
+    font-kerning:normal!important;
+    font-variant-ligatures:none!important;
+}
+
+</style>
 </head>
 <body>
     <div class="container" id="app">
