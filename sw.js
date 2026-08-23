@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'gpp-pwa-v10-drag-attention';
+const CACHE_VERSION = 'gpp-pwa-v11-chatbot-update';
 const APP_SHELL = [
   './',
   './index.html',
