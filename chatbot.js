@@ -51,7 +51,7 @@
           <button class="truong-ai-send" aria-label="Gửi">➤</button>
         </div>
         <div class="truong-ai-contact">☎ <a href="tel:0829076979">0829.076979</a> · Zalo: <strong>truongphotoart</strong></div>
-        <div class="truong-ai-footer">AI hỗ trợ tra cứu và tổng hợp thông tin Y-Dược trọng điểm. Nội dung không thay thế chẩn đoán, kê đơn hoặc quyết định chuyên môn trực tiếp của người hành nghề.</div>
+        <div class="truong-ai-footer">AI hỗ trợ tra cứu và tổng hợp thông tin Y-Dược. Nội dung không thay thế chẩn đoán, kê đơn hoặc quyết định chuyên môn trực tiếp của người hành nghề.</div>
       </div>
     </section>`;
   document.body.appendChild(root);
