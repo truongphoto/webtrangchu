@@ -5,6 +5,7 @@
   const BOT_NAME = CONFIG.botName || 'Trường GPP';
   const AUTHOR = CONFIG.author || 'Ngô Quang Trường';
   const MAX_HISTORY = 12;
+  const SIZE_KEY = 'truong-gpp-chat-size-v1';
   let history = [];
   let busy = false;
 
@@ -156,6 +157,21 @@
     y=Math.min(Math.max(y,pad),Math.max(pad,window.innerHeight-pr.height-pad));
     panel.style.left=x+'px'; panel.style.top=y+'px'; panel.style.right='auto'; panel.style.bottom='auto';
   }
+  function restorePanelSize(){
+    if(window.innerWidth<=520) return;
+    try{
+      const saved=JSON.parse(localStorage.getItem(SIZE_KEY)||'null');
+      if(!saved) return;
+      const w=Math.min(Math.max(Number(saved.w)||440,350),window.innerWidth-16);
+      const h=Math.min(Math.max(Number(saved.h)||680,470),window.innerHeight-16);
+      panel.style.width=w+'px'; panel.style.height=h+'px';
+    }catch(_){}
+  }
+  function savePanelSize(){
+    if(window.innerWidth<=520) return;
+    const r=panel.getBoundingClientRect();
+    try{localStorage.setItem(SIZE_KEY,JSON.stringify({w:Math.round(r.width),h:Math.round(r.height)}));}catch(_){}
+  }
   function openPanel(){
     panel.classList.add('is-open'); root.classList.add('chat-open');
     requestAnimationFrame(()=>{positionPanel(); input.focus();});
@@ -202,6 +218,17 @@
     positionPanel();
   });
   restoreFabPosition();
+  restorePanelSize();
+  let resizeSaveTimer=null;
+  if('ResizeObserver' in window){
+    const ro=new ResizeObserver(()=>{
+      if(!panel.classList.contains('is-open')) return;
+      positionPanel();
+      clearTimeout(resizeSaveTimer);
+      resizeSaveTimer=setTimeout(savePanelSize,180);
+    });
+    ro.observe(panel);
+  }
   sendBtn.addEventListener('click',ask);
   input.addEventListener('input',resize);
   input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask();}});
