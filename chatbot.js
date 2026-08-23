@@ -6,6 +6,13 @@
   const AUTHOR = CONFIG.author || 'Ngô Quang Trường';
   const MAX_HISTORY = 12;
   const SIZE_KEY = 'truong-gpp-chat-size-v1';
+
+  // Kích thước logo chat nổi
+  const LOGO_SIZE_KEY = 'truong-gpp-chat-logo-size-v1';
+  const LOGO_MIN_SIZE = 44;
+  const LOGO_MAX_SIZE = 110;
+  const LOGO_STEP = 4;
+
   let history = [];
   let busy = false;
 
@@ -14,7 +21,7 @@
   root.innerHTML = `
     <div class="truong-ai-fab" aria-label="Mở Trường GPP">
       <div class="truong-ai-hint">💬 Click vào để đặt câu hỏi</div>
-      <button class="truong-ai-launcher" aria-label="Mở Trường GPP">
+      <button class="truong-ai-launcher" aria-label="Mở Trường GPP" title="Lăn chuột để phóng to / thu nhỏ logo">
         <img src="${LOGO}" alt="Logo"><span class="badge"></span>
       </button>
     </div>
@@ -29,7 +36,7 @@
           </div>
           <button class="truong-ai-close" aria-label="Đóng">×</button>
         </div>
-        <div class="truong-ai-tagline"><strong>Trợ lý tra cứu thuốc, hỗ trợ xử trí Y-Dược và tư vấn lâm sàng tham khảo cho bác sĩ/dược sĩ</strong></div>
+        <div class="truong-ai-tagline"><strong>Câu Trả lời Trực tiếp Từ AI chỉ mang tính chất tham khảo</strong></div>
       </header>
       <div class="truong-ai-actions">
         <button class="truong-ai-chip" data-prompt="Cho tôi thông tin thuốc: ">💊 Tra cứu thuốc</button>
@@ -57,7 +64,16 @@
   const input = root.querySelector('.truong-ai-input');
   const sendBtn = root.querySelector('.truong-ai-send');
 
-  function esc(s='') { return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
+  function esc(s='') {
+    return s.replace(/[&<>"']/g, c => ({
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '"':'&quot;',
+      "'":'&#039;'
+    }[c]));
+  }
+
   function inlineFormat(s='') {
     let out = esc(s);
     out = out.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
@@ -65,61 +81,155 @@
     out = out.replace(/\n/g,'<br>');
     return out;
   }
+
   function formatText(text='') {
     const lines = text.replace(/\r/g,'').split('\n');
     let html='', inUl=false, inOl=false;
-    const closeLists=()=>{ if(inUl){html+='</ul>';inUl=false;} if(inOl){html+='</ol>';inOl=false;} };
+
+    const closeLists=()=>{
+      if(inUl){html+='</ul>';inUl=false;}
+      if(inOl){html+='</ol>';inOl=false;}
+    };
+
     for(const raw of lines){
       const line=raw.trim();
-      if(!line){closeLists(); continue;}
+      if(!line){
+        closeLists();
+        continue;
+      }
+
       if(/^[-*•]\s+/.test(line)){
-        if(inOl){html+='</ol>';inOl=false;} if(!inUl){html+='<ul>';inUl=true;}
-        html+=`<li>${inlineFormat(line.replace(/^[-*•]\s+/,''))}</li>`; continue;
+        if(inOl){html+='</ol>';inOl=false;}
+        if(!inUl){html+='<ul>';inUl=true;}
+        html+=`<li>${inlineFormat(line.replace(/^[-*•]\s+/,''))}</li>`;
+        continue;
       }
+
       if(/^\d+[.)]\s+/.test(line)){
-        if(inUl){html+='</ul>';inUl=false;} if(!inOl){html+='<ol>';inOl=true;}
-        html+=`<li>${inlineFormat(line.replace(/^\d+[.)]\s+/,''))}</li>`; continue;
+        if(inUl){html+='</ul>';inUl=false;}
+        if(!inOl){html+='<ol>';inOl=true;}
+        html+=`<li>${inlineFormat(line.replace(/^\d+[.)]\s+/,''))}</li>`;
+        continue;
       }
-      closeLists(); html+=`<p>${inlineFormat(line)}</p>`;
+
+      closeLists();
+      html+=`<p>${inlineFormat(line)}</p>`;
     }
-    closeLists(); return html || '<p>Không có nội dung.</p>';
+
+    closeLists();
+    return html || '<p>Không có nội dung.</p>';
   }
+
   function addMessage(role, text, sources=[]) {
     const row = document.createElement('div');
     row.className = `truong-ai-message ${role}`;
-    const sourceHtml = sources.length ? `<div class="truong-ai-sources"><div class="truong-ai-sources-title">Nguồn tham khảo</div>${sources.slice(0,6).map((s,i)=>{
-      const official = s.official ? '<span class="truong-ai-official">Chính thống</span>' : '';
-      return `<a class="truong-ai-source" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${i+1}. ${esc(s.title || s.url)}${official}</a>`;
-    }).join('')}</div>` : '';
+
+    const sourceHtml = sources.length
+      ? `<div class="truong-ai-sources">
+          <div class="truong-ai-sources-title">Nguồn tham khảo</div>
+          ${sources.slice(0,6).map((s,i)=>{
+            const official = s.official
+              ? '<span class="truong-ai-official">Chính thống</span>'
+              : '';
+            return `<a class="truong-ai-source" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">
+              ${i+1}. ${esc(s.title || s.url)}${official}
+            </a>`;
+          }).join('')}
+        </div>`
+      : '';
+
     if(role === 'bot'){
-      row.innerHTML = `<div class="truong-ai-miniavatar"><img src="${LOGO}" alt=""></div><div class="truong-ai-bubble"><div class="truong-ai-label">${BOT_NAME} · ${AUTHOR}</div>${formatText(text)}${sourceHtml}</div>`;
+      row.innerHTML = `
+        <div class="truong-ai-miniavatar"><img src="${LOGO}" alt=""></div>
+        <div class="truong-ai-bubble">
+          <div class="truong-ai-label">${BOT_NAME} · ${AUTHOR}</div>
+          ${formatText(text)}
+          ${sourceHtml}
+        </div>`;
     } else {
       row.innerHTML = `<div class="truong-ai-bubble">${formatText(text)}</div>`;
     }
-    messages.appendChild(row); messages.scrollTop = messages.scrollHeight;
+
+    messages.appendChild(row);
+    messages.scrollTop = messages.scrollHeight;
   }
+
   function showTyping(){
-    const row=document.createElement('div'); row.className='truong-ai-message bot tq-typing-row';
-    row.innerHTML=`<div class="truong-ai-miniavatar"><img src="${LOGO}" alt=""></div><div class="truong-ai-bubble"><div class="truong-ai-label">${BOT_NAME}</div><span class="truong-ai-typing"><i></i><i></i><i></i></span></div>`;
-    messages.appendChild(row); messages.scrollTop=messages.scrollHeight;
+    const row=document.createElement('div');
+    row.className='truong-ai-message bot tq-typing-row';
+    row.innerHTML=`
+      <div class="truong-ai-miniavatar"><img src="${LOGO}" alt=""></div>
+      <div class="truong-ai-bubble">
+        <div class="truong-ai-label">${BOT_NAME}</div>
+        <span class="truong-ai-typing"><i></i><i></i><i></i></span>
+      </div>`;
+    messages.appendChild(row);
+    messages.scrollTop=messages.scrollHeight;
   }
-  function hideTyping(){ root.querySelector('.tq-typing-row')?.remove(); }
-  function resize(){ input.style.height='auto'; input.style.height=Math.min(input.scrollHeight,104)+'px'; }
+
+  function hideTyping(){
+    root.querySelector('.tq-typing-row')?.remove();
+  }
+
+  function resize(){
+    input.style.height='auto';
+    input.style.height=Math.min(input.scrollHeight,104)+'px';
+  }
 
   async function ask(){
-    const text=input.value.trim(); if(!text || busy) return;
-    busy=true; sendBtn.disabled=true; input.value=''; resize(); addMessage('user',text); showTyping();
+    const text=input.value.trim();
+    if(!text || busy) return;
+
+    busy=true;
+    sendBtn.disabled=true;
+    input.value='';
+    resize();
+    addMessage('user',text);
+    showTyping();
+
     const requestHistory = history.slice(-MAX_HISTORY);
+
     try{
-      const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,history:requestHistory})});
+      const r=await fetch(API_URL,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          message:text,
+          history:requestHistory
+        })
+      });
+
       const data=await r.json().catch(()=>({}));
-      if(!r.ok) throw new Error(data.error || `Lỗi kết nối (${r.status})`);
-      hideTyping(); addMessage('bot',data.answer || 'Mình chưa nhận được nội dung trả lời.',data.sources || []);
-      history.push({role:'user',text},{role:'model',text:data.answer || ''});
+
+      if(!r.ok){
+        throw new Error(data.error || `Lỗi kết nối (${r.status})`);
+      }
+
+      hideTyping();
+      addMessage(
+        'bot',
+        data.answer || 'Mình chưa nhận được nội dung trả lời.',
+        data.sources || []
+      );
+
+      history.push(
+        {role:'user',text},
+        {role:'model',text:data.answer || ''}
+      );
+
       history=history.slice(-MAX_HISTORY);
+
     }catch(e){
-      hideTyping(); addMessage('bot',`Hiện chưa kết nối được máy chủ AI. ${e.message || ''}\n\nVui lòng thử lại sau hoặc liên hệ 0829.076979.`);
-    }finally{busy=false;sendBtn.disabled=false;input.focus();}
+      hideTyping();
+      addMessage(
+        'bot',
+        `Hiện chưa kết nối được máy chủ AI. ${e.message || ''}\n\nVui lòng thử lại sau hoặc liên hệ 0829.076979.`
+      );
+    }finally{
+      busy=false;
+      sendBtn.disabled=false;
+      input.focus();
+    }
   }
 
   const POS_KEY = 'truong-gpp-chat-position-v1';
@@ -131,108 +241,349 @@
     const pad=8;
     const maxX=Math.max(pad,window.innerWidth-r.width-pad);
     const maxY=Math.max(pad,window.innerHeight-r.height-pad);
-    return {x:Math.min(Math.max(x,pad),maxX),y:Math.min(Math.max(y,pad),maxY)};
+
+    return {
+      x:Math.min(Math.max(x,pad),maxX),
+      y:Math.min(Math.max(y,pad),maxY)
+    };
   }
+
   function setFabPosition(x,y,save=false){
     const p=clampFab(x,y);
-    fab.style.left=p.x+'px'; fab.style.top=p.y+'px';
-    fab.style.right='auto'; fab.style.bottom='auto';
-    if(save){ try{localStorage.setItem(POS_KEY,JSON.stringify(p));}catch(_){} }
+
+    fab.style.left=p.x+'px';
+    fab.style.top=p.y+'px';
+    fab.style.right='auto';
+    fab.style.bottom='auto';
+
+    if(save){
+      try{
+        localStorage.setItem(POS_KEY,JSON.stringify(p));
+      }catch(_){}
+    }
   }
+
   function restoreFabPosition(){
     try{
       const p=JSON.parse(localStorage.getItem(POS_KEY)||'null');
-      if(p && Number.isFinite(p.x) && Number.isFinite(p.y)) setFabPosition(p.x,p.y,false);
+
+      if(
+        p &&
+        Number.isFinite(p.x) &&
+        Number.isFinite(p.y)
+      ){
+        setFabPosition(p.x,p.y,false);
+      }
     }catch(_){}
   }
+
   function positionPanel(){
     if(!panel.classList.contains('is-open')) return;
+
     const fr=fab.getBoundingClientRect();
     const pr=panel.getBoundingClientRect();
-    const pad=8, gap=12;
-    let x = fr.left + fr.width/2 > window.innerWidth/2 ? fr.right-pr.width : fr.left;
+    const pad=8;
+    const gap=12;
+
+    let x = fr.left + fr.width/2 > window.innerWidth/2
+      ? fr.right-pr.width
+      : fr.left;
+
     let y = fr.top-pr.height-gap;
-    if(y<pad) y=fr.bottom+gap;
-    x=Math.min(Math.max(x,pad),Math.max(pad,window.innerWidth-pr.width-pad));
-    y=Math.min(Math.max(y,pad),Math.max(pad,window.innerHeight-pr.height-pad));
-    panel.style.left=x+'px'; panel.style.top=y+'px'; panel.style.right='auto'; panel.style.bottom='auto';
+
+    if(y<pad){
+      y=fr.bottom+gap;
+    }
+
+    x=Math.min(
+      Math.max(x,pad),
+      Math.max(pad,window.innerWidth-pr.width-pad)
+    );
+
+    y=Math.min(
+      Math.max(y,pad),
+      Math.max(pad,window.innerHeight-pr.height-pad)
+    );
+
+    panel.style.left=x+'px';
+    panel.style.top=y+'px';
+    panel.style.right='auto';
+    panel.style.bottom='auto';
   }
-  function restorePanelSize(){
+
+  // Phóng to / thu nhỏ logo bằng con lăn
+  function setLauncherSize(size,save=false){
+    const n=Math.min(
+      LOGO_MAX_SIZE,
+      Math.max(LOGO_MIN_SIZE,Math.round(size))
+    );
+
+    launcher.style.width=n+'px';
+    launcher.style.height=n+'px';
+    launcher.style.flexBasis=n+'px';
+
+    if(save){
+      try{
+        localStorage.setItem(LOGO_SIZE_KEY,String(n));
+      }catch(_){}
+    }
+
+    if(fab.style.left){
+      const r=fab.getBoundingClientRect();
+      setFabPosition(r.left,r.top,false);
+    }
+
+    positionPanel();
+  }
+
+  function restoreLauncherSize(){
     if(window.innerWidth<=520) return;
+
     try{
-      const saved=JSON.parse(localStorage.getItem(SIZE_KEY)||'null');
-      if(!saved) return;
-      const w=Math.min(Math.max(Number(saved.w)||440,350),window.innerWidth-16);
-      const h=Math.min(Math.max(Number(saved.h)||680,470),window.innerHeight-16);
-      panel.style.width=w+'px'; panel.style.height=h+'px';
+      const saved=Number(localStorage.getItem(LOGO_SIZE_KEY));
+
+      if(Number.isFinite(saved) && saved>0){
+        setLauncherSize(saved,false);
+      }
     }catch(_){}
   }
+
+  function restorePanelSize(){
+    if(window.innerWidth<=520) return;
+
+    try{
+      const saved=JSON.parse(
+        localStorage.getItem(SIZE_KEY)||'null'
+      );
+
+      if(!saved) return;
+
+      const w=Math.min(
+        Math.max(Number(saved.w)||440,350),
+        window.innerWidth-16
+      );
+
+      const h=Math.min(
+        Math.max(Number(saved.h)||680,470),
+        window.innerHeight-16
+      );
+
+      panel.style.width=w+'px';
+      panel.style.height=h+'px';
+
+    }catch(_){}
+  }
+
   function savePanelSize(){
     if(window.innerWidth<=520) return;
+
     const r=panel.getBoundingClientRect();
-    try{localStorage.setItem(SIZE_KEY,JSON.stringify({w:Math.round(r.width),h:Math.round(r.height)}));}catch(_){}
+
+    try{
+      localStorage.setItem(
+        SIZE_KEY,
+        JSON.stringify({
+          w:Math.round(r.width),
+          h:Math.round(r.height)
+        })
+      );
+    }catch(_){}
   }
+
   function openPanel(){
-    panel.classList.add('is-open'); root.classList.add('chat-open');
-    requestAnimationFrame(()=>{positionPanel(); input.focus();});
+    panel.classList.add('is-open');
+    root.classList.add('chat-open');
+
+    requestAnimationFrame(()=>{
+      positionPanel();
+      input.focus();
+    });
   }
-  function closePanel(){ panel.classList.remove('is-open'); root.classList.remove('chat-open'); }
-  function togglePanel(){ panel.classList.contains('is-open') ? closePanel() : openPanel(); }
+
+  function closePanel(){
+    panel.classList.remove('is-open');
+    root.classList.remove('chat-open');
+  }
+
+  function togglePanel(){
+    panel.classList.contains('is-open')
+      ? closePanel()
+      : openPanel();
+  }
+
+  // Chỉ zoom khi con trỏ đang nằm trên logo
+  launcher.addEventListener('wheel',e=>{
+    // Trên mobile không dùng con lăn
+    if(window.innerWidth<=520) return;
+
+    e.preventDefault();
+
+    const current =
+      parseFloat(launcher.style.width) ||
+      launcher.getBoundingClientRect().width;
+
+    // Lăn lên = phóng to
+    // Lăn xuống = thu nhỏ
+    const next =
+      current + (e.deltaY < 0 ? LOGO_STEP : -LOGO_STEP);
+
+    setLauncherSize(next,true);
+
+  },{passive:false});
 
   fab.addEventListener('pointerdown',e=>{
     if(e.button!==undefined && e.button!==0) return;
+
     const r=fab.getBoundingClientRect();
-    dragState={id:e.pointerId,startX:e.clientX,startY:e.clientY,offX:e.clientX-r.left,offY:e.clientY-r.top,moved:false};
+
+    dragState={
+      id:e.pointerId,
+      startX:e.clientX,
+      startY:e.clientY,
+      offX:e.clientX-r.left,
+      offY:e.clientY-r.top,
+      moved:false
+    };
+
     fab.classList.add('is-dragging');
-    try{fab.setPointerCapture(e.pointerId);}catch(_){}
+
+    try{
+      fab.setPointerCapture(e.pointerId);
+    }catch(_){}
   });
+
   fab.addEventListener('pointermove',e=>{
     if(!dragState || e.pointerId!==dragState.id) return;
-    const dx=e.clientX-dragState.startX, dy=e.clientY-dragState.startY;
-    if(!dragState.moved && Math.hypot(dx,dy)>5) dragState.moved=true;
+
+    const dx=e.clientX-dragState.startX;
+    const dy=e.clientY-dragState.startY;
+
+    if(
+      !dragState.moved &&
+      Math.hypot(dx,dy)>5
+    ){
+      dragState.moved=true;
+    }
+
     if(!dragState.moved) return;
+
     e.preventDefault();
-    setFabPosition(e.clientX-dragState.offX,e.clientY-dragState.offY,false);
+
+    setFabPosition(
+      e.clientX-dragState.offX,
+      e.clientY-dragState.offY,
+      false
+    );
+
     positionPanel();
   });
+
   function endDrag(e){
     if(!dragState || e.pointerId!==dragState.id) return;
+
     const moved=dragState.moved;
     dragState=null;
+
     fab.classList.remove('is-dragging');
+
     if(moved){
-      const r=fab.getBoundingClientRect(); setFabPosition(r.left,r.top,true);
-      suppressClick=true; setTimeout(()=>suppressClick=false,80);
+      const r=fab.getBoundingClientRect();
+
+      setFabPosition(
+        r.left,
+        r.top,
+        true
+      );
+
+      suppressClick=true;
+
+      setTimeout(
+        ()=>suppressClick=false,
+        80
+      );
     }
   }
+
   fab.addEventListener('pointerup',endDrag);
   fab.addEventListener('pointercancel',endDrag);
+
   fab.addEventListener('click',e=>{
-    if(suppressClick){e.preventDefault();e.stopPropagation();return;}
+    if(suppressClick){
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
     togglePanel();
   });
+
   closeBtn.addEventListener('click',closePanel);
+
   window.addEventListener('resize',()=>{
+    if(window.innerWidth<=520){
+      // Trên mobile trả về kích thước do CSS quản lý
+      launcher.style.width='';
+      launcher.style.height='';
+      launcher.style.flexBasis='';
+    }else if(!launcher.style.width){
+      restoreLauncherSize();
+    }
+
     const r=fab.getBoundingClientRect();
-    if(fab.style.left) setFabPosition(r.left,r.top,false);
+
+    if(fab.style.left){
+      setFabPosition(
+        r.left,
+        r.top,
+        false
+      );
+    }
+
     positionPanel();
   });
+
+  restoreLauncherSize();
   restoreFabPosition();
   restorePanelSize();
+
   let resizeSaveTimer=null;
+
   if('ResizeObserver' in window){
     const ro=new ResizeObserver(()=>{
       if(!panel.classList.contains('is-open')) return;
+
       positionPanel();
       clearTimeout(resizeSaveTimer);
-      resizeSaveTimer=setTimeout(savePanelSize,180);
+
+      resizeSaveTimer=setTimeout(
+        savePanelSize,
+        180
+      );
     });
+
     ro.observe(panel);
   }
-  sendBtn.addEventListener('click',ask);
-  input.addEventListener('input',resize);
-  input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask();}});
-  root.querySelectorAll('.truong-ai-chip').forEach(b=>b.addEventListener('click',()=>{input.value=b.dataset.prompt||'';resize();input.focus();}));
 
-  addMessage('bot','Xin chào! Tôi là **Trường GPP**. Tôi hỗ trợ **tra cứu thuốc, tương tác thuốc, đối tượng đặc biệt và xử trí Y-Dược tham khảo**. Bạn cần hỗ trợ nội dung gì?');
+  sendBtn.addEventListener('click',ask);
+
+  input.addEventListener('input',resize);
+
+  input.addEventListener('keydown',e=>{
+    if(e.key==='Enter'&&!e.shiftKey){
+      e.preventDefault();
+      ask();
+    }
+  });
+
+  root.querySelectorAll('.truong-ai-chip')
+    .forEach(b=>b.addEventListener('click',()=>{
+      input.value=b.dataset.prompt||'';
+      resize();
+      input.focus();
+    }));
+
+  addMessage(
+    'bot',
+    'Xin chào! Tôi là **Trường GPP.** Bạn cần hỗ trợ nội dung gì?'
+  );
 })();
