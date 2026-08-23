@@ -28,13 +28,13 @@
           </div>
           <button class="truong-ai-close" aria-label="Đóng">×</button>
         </div>
-        <div class="truong-ai-tagline"><strong>Tư vấn GPHĐ Phòng khám, GPP, CCHN, CME Y-Dược &amp; Hiệu chuẩn TBYT</strong></div>
+        <div class="truong-ai-tagline"><strong>Trợ lý tra cứu thuốc, hỗ trợ xử trí Y-Dược và tư vấn lâm sàng tham khảo cho bác sĩ/dược sĩ</strong></div>
       </header>
       <div class="truong-ai-actions">
-        <button class="truong-ai-chip" data-prompt="Tra cứu thuốc: ">💊 Tra cứu thuốc</button>
-        <button class="truong-ai-chip" data-prompt="Tra cứu văn bản pháp luật hiện hành về: ">⚖️ Văn bản pháp luật</button>
-        <button class="truong-ai-chip" data-prompt="Giải thích thuật ngữ Y-Dược: ">📚 Y-Dược</button>
-        <button class="truong-ai-chip" data-prompt="">💬 Hỏi đáp</button>
+        <button class="truong-ai-chip" data-prompt="Cho tôi thông tin thuốc: ">💊 Tra cứu thuốc</button>
+        <button class="truong-ai-chip" data-prompt="Kiểm tra tương tác giữa các thuốc sau: ">🔄 Tương tác thuốc</button>
+        <button class="truong-ai-chip" data-prompt="Tư vấn dùng thuốc cho phụ nữ có thai/cho con bú/trẻ em: ">🤱 Đối tượng đặc biệt</button>
+        <button class="truong-ai-chip" data-prompt="Gợi ý hướng xử trí hoặc phác đồ tham khảo cho: ">📋 Phác đồ tham khảo</button>
       </div>
       <div class="truong-ai-messages" role="log" aria-live="polite"></div>
       <div class="truong-ai-compose">
@@ -43,7 +43,7 @@
           <button class="truong-ai-send" aria-label="Gửi">➤</button>
         </div>
         <div class="truong-ai-contact">☎ <a href="tel:0829076979">0829.076979</a> · Zalo: <strong>truongphotoart</strong></div>
-        <div class="truong-ai-footer">AI hỗ trợ tra cứu thông tin. Nội dung Y-Dược không thay thế chẩn đoán, kê đơn hoặc tư vấn trực tiếp của người hành nghề.</div>
+        <div class="truong-ai-footer">AI hỗ trợ tra cứu và tổng hợp thông tin Y-Dược trọng điểm. Nội dung không thay thế chẩn đoán, kê đơn hoặc quyết định chuyên môn trực tiếp của người hành nghề.</div>
       </div>
     </section>`;
   document.body.appendChild(root);
@@ -207,5 +207,5 @@
   input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask();}});
   root.querySelectorAll('.truong-ai-chip').forEach(b=>b.addEventListener('click',()=>{input.value=b.dataset.prompt||'';resize();input.focus();}));
 
-  addMessage('bot','Xin chào! Tôi là **Trường GPP**. Tôi hỗ trợ **tra cứu thuốc, kiến thức Y-Dược, văn bản pháp luật hiện hành và hỏi đáp thông thường**. Bạn muốn tìm thông tin gì?');
+  addMessage('bot','Xin chào! Tôi là **Trường GPP**. Tôi hỗ trợ **tra cứu thuốc, tương tác thuốc, đối tượng đặc biệt và xử trí Y-Dược tham khảo**. Bạn cần hỗ trợ nội dung gì?');
 })();

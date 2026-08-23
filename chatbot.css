@@ -16,17 +16,17 @@
 .truong-ai-fab.is-dragging{cursor:grabbing}
 .truong-ai-hint{position:relative;white-space:nowrap;background:linear-gradient(135deg,#0b6f98,#178ab4);color:#fff;border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:9px 13px;font-size:12px;font-weight:800;box-shadow:0 8px 24px rgba(11,111,152,.24);letter-spacing:.05px;animation:tqHintBreath 3.8s ease-in-out infinite}
 .truong-ai-hint:after{content:"";position:absolute;right:-5px;top:50%;width:10px;height:10px;background:#1685ad;transform:translateY(-50%) rotate(45deg)}
-.truong-ai-launcher{position:relative;width:62px;height:62px;flex:0 0 62px;border:0;border-radius:50%;background:#fff;box-shadow:0 10px 30px rgba(0,77,105,.28);cursor:pointer;padding:8px;transition:.2s box-shadow ease;animation:tqLauncherNudge 3.8s ease-in-out infinite}
-.truong-ai-launcher:before{content:"";position:absolute;inset:-6px;border:2px solid rgba(11,111,152,.26);border-radius:50%;opacity:0;animation:tqRing 3.8s ease-out infinite;pointer-events:none}
+.truong-ai-launcher{position:relative;width:62px;height:62px;flex:0 0 62px;border:0;border-radius:50%;background:#fff;box-shadow:0 10px 30px rgba(0,77,105,.28);cursor:pointer;padding:8px;transition:.2s box-shadow ease,.2s transform ease;transform-origin:center bottom;animation:tqLauncherBounce 4.6s cubic-bezier(.22,.8,.28,1) infinite}
+.truong-ai-launcher:before{content:"";position:absolute;inset:-6px;border:2px solid rgba(11,111,152,.26);border-radius:50%;opacity:0;animation:tqRing 4.6s ease-out infinite;pointer-events:none}
 .truong-ai-launcher:hover{box-shadow:0 14px 34px rgba(0,77,105,.34)}
-.truong-ai-launcher img{width:100%;height:100%;object-fit:contain;border-radius:50%}
+.truong-ai-launcher img{width:100%;height:100%;object-fit:contain;border-radius:50%;pointer-events:none}
 .truong-ai-launcher .badge{position:absolute;right:1px;top:1px;width:14px;height:14px;border-radius:50%;background:#27b95f;border:3px solid #fff;box-shadow:0 0 0 0 rgba(39,185,95,.32);animation:tqBadge 2.4s ease-out infinite}
 @keyframes tqBadge{0%,55%,100%{box-shadow:0 0 0 0 rgba(39,185,95,.28)}75%{box-shadow:0 0 0 6px rgba(39,185,95,0)}}
 
-@keyframes tqLauncherNudge{0%,72%,100%{transform:translateY(0) scale(1)}78%{transform:translateY(-4px) scale(1.025)}84%{transform:translateY(1px) scale(.995)}90%{transform:translateY(-2px) scale(1.01)}}
+@keyframes tqLauncherBounce{0%,68%,100%{transform:translateY(0) scale(1,1)}72%{transform:translateY(-10px) scale(.97,1.04)}76%{transform:translateY(0) scale(1.1,.9)}80%{transform:translateY(-6px) scale(.98,1.03)}84%{transform:translateY(0) scale(1.06,.94)}88%{transform:translateY(-2px) scale(.995,1.01)}92%{transform:translateY(0) scale(1,1)}}
 @keyframes tqHintBreath{0%,65%,100%{transform:translateY(0);box-shadow:0 8px 24px rgba(11,111,152,.22)}75%{transform:translateY(-2px);box-shadow:0 10px 30px rgba(11,111,152,.34)}85%{transform:translateY(0)}}
-@keyframes tqRing{0%,68%{opacity:0;transform:scale(.88)}74%{opacity:.55}90%{opacity:0;transform:scale(1.22)}100%{opacity:0}}
-#truong-ai-root.chat-open .truong-ai-launcher,#truong-ai-root.chat-open .truong-ai-launcher:before,#truong-ai-root.chat-open .truong-ai-hint,.truong-ai-fab.is-dragging .truong-ai-launcher,.truong-ai-fab.is-dragging .truong-ai-launcher:before,.truong-ai-fab.is-dragging .truong-ai-hint{animation:none!important}
+@keyframes tqRing{0%,68%{opacity:0;transform:scale(.88)}74%{opacity:.58}90%{opacity:0;transform:scale(1.25)}100%{opacity:0}}
+#truong-ai-root.chat-open .truong-ai-launcher,#truong-ai-root.chat-open .truong-ai-launcher:before,#truong-ai-root.chat-open .truong-ai-hint,.truong-ai-fab.is-dragging .truong-ai-launcher,.truong-ai-fab.is-dragging .truong-ai-launcher:before,.truong-ai-fab.is-dragging .truong-ai-hint,.truong-ai-fab:hover .truong-ai-launcher,.truong-ai-fab:hover .truong-ai-launcher:before,.truong-ai-fab:hover .truong-ai-hint{animation:none!important}
 .truong-ai-panel{position:fixed;right:22px;bottom:96px;width:min(410px,calc(100vw - 24px));height:min(680px,calc(100vh - 118px));background:var(--tq-card);border:1px solid rgba(11,111,152,.14);border-radius:22px;box-shadow:var(--tq-shadow);z-index:99999;overflow:hidden;display:none;flex-direction:column;animation:tqIn .18s ease-out}
 .truong-ai-panel.is-open{display:flex}
 @keyframes tqIn{from{opacity:0;transform:translateY(8px) scale(.985)}to{opacity:1;transform:none}}
@@ -40,9 +40,9 @@
 .truong-ai-online{font-size:11px;color:#18864b;font-weight:700;margin-top:4px}
 .truong-ai-close{border:0;background:rgba(11,111,152,.08);width:34px;height:34px;border-radius:10px;font-size:20px;line-height:1;color:var(--tq-blue-dark);cursor:pointer}
 .truong-ai-tagline{font-size:11.5px;line-height:1.45;color:#49656f;margin-top:10px;padding-top:9px;border-top:1px dashed rgba(11,111,152,.2)}
-.truong-ai-actions{display:flex;gap:7px;overflow-x:auto;padding:10px 12px;border-bottom:1px solid var(--tq-line);background:#fff;scrollbar-width:none}
+.truong-ai-actions{display:flex;flex-wrap:wrap;gap:7px;overflow:visible;padding:10px 12px;border-bottom:1px solid var(--tq-line);background:#fff;scrollbar-width:none}
 .truong-ai-actions::-webkit-scrollbar{display:none}
-.truong-ai-chip{border:1px solid #cde0e7;background:#fff;color:#1c5f78;border-radius:999px;padding:7px 10px;font-size:11.5px;white-space:nowrap;cursor:pointer;font-weight:650}
+.truong-ai-chip{border:1px solid #cde0e7;background:#fff;color:#1c5f78;border-radius:999px;padding:7px 10px;font-size:11.5px;white-space:nowrap;cursor:pointer;font-weight:650;flex:0 0 auto}
 .truong-ai-chip:hover{background:#eef8fb;border-color:#9fc8d8}
 .truong-ai-messages{flex:1;overflow-y:auto;background:var(--tq-bg);padding:14px 12px 18px}
 .truong-ai-message{display:flex;gap:8px;margin:0 0 13px;align-items:flex-end}
@@ -73,5 +73,5 @@
 .truong-ai-footer{font-size:9.8px;text-align:center;color:#7a8d94;margin-top:7px;line-height:1.35}
 .truong-ai-contact{font-size:10.5px;text-align:center;color:#365c6a;margin-top:3px;font-weight:650}
 .truong-ai-contact a{color:var(--tq-blue);text-decoration:none}
-@media(max-width:520px){.truong-ai-panel{width:calc(100vw - 12px);height:calc(100vh - 88px);border-radius:18px}.truong-ai-fab{right:12px;bottom:12px;gap:8px}.truong-ai-launcher{width:58px;height:58px;flex-basis:58px}.truong-ai-hint{font-size:11px;padding:8px 10px;max-width:190px;overflow:hidden;text-overflow:ellipsis}.truong-ai-header{padding:12px}.truong-ai-bubble{max-width:88%}}
+@media(max-width:520px){.truong-ai-panel{width:calc(100vw - 12px);height:calc(100vh - 88px);border-radius:18px}.truong-ai-fab{right:12px;bottom:12px;gap:8px}.truong-ai-launcher{width:58px;height:58px;flex-basis:58px}.truong-ai-hint{font-size:11px;padding:8px 10px;max-width:190px;overflow:hidden;text-overflow:ellipsis}.truong-ai-header{padding:12px}.truong-ai-bubble{max-width:88%}.truong-ai-actions{gap:6px}.truong-ai-chip{font-size:11px}}
 @media(prefers-reduced-motion:reduce){.truong-ai-launcher,.truong-ai-launcher:before,.truong-ai-hint,.truong-ai-launcher .badge{animation:none!important}}
