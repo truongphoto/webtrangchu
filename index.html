@@ -491,17 +491,17 @@ body,button,a,input,span,div{
                 </summary>
                 <div class="game-sublinks">
                     <a href="https://truongphoto.github.io/truyquet/" target="_blank" rel="noopener noreferrer" class="link-item" title="Bác Sĩ Truy Quét">
-                        <img class="game-icon" src="https://truongphoto.github.io/truyquet/assets/app-icon-192.png" alt="Biểu tượng Bác Sĩ Truy Quét">
+                        <img class="game-icon" src="https://truongphoto.github.io/truyquet/assets/app-icon-192.png" data-manifest="https://truongphoto.github.io/truyquet/manifest.webmanifest" alt="Biểu tượng Bác Sĩ Truy Quét">
                         <span>3.1 BÁC SĨ TRUY QUÉT</span>
                         <span class="arrow"><i class="fas fa-arrow-right"></i></span>
                     </a>
                     <a href="https://truongphoto.github.io/bacsy/" target="_blank" rel="noopener noreferrer" class="link-item" title="Doctor Rush">
-                        <img class="game-icon" src="https://truongphoto.github.io/bacsy/icon-192.png" alt="Biểu tượng Doctor Rush">
+                        <img class="game-icon" src="https://truongphoto.github.io/bacsy/icon-192.png" data-manifest="https://truongphoto.github.io/bacsy/manifest.webmanifest" alt="Biểu tượng Doctor Rush">
                         <span>3.2 DOCTOR RUSH</span>
                         <span class="arrow"><i class="fas fa-arrow-right"></i></span>
                     </a>
                     <a href="https://truongphoto.github.io/GAMEVUI/" target="_blank" rel="noopener noreferrer" class="link-item" title="Dược Sĩ Thư Giản">
-                        <img class="game-icon" src="gamevui-icon-192.png" alt="Biểu tượng Dược Sĩ Thư Giản">
+                        <img class="game-icon" src="https://truongphoto.github.io/GAMEVUI/logo-icon-192.png" data-manifest="https://truongphoto.github.io/GAMEVUI/manifest.webmanifest" alt="Biểu tượng Dược Sĩ Thư Giản">
                         <span>3.3 DƯỢC SĨ THƯ GIẢN</span>
                         <span class="arrow"><i class="fas fa-arrow-right"></i></span>
                     </a>
@@ -532,7 +532,35 @@ body,button,a,input,span,div{
                 document.getElementById('links-d').classList.add('active');
             } else if (type === 't') {
                 document.getElementById('links-t').classList.add('active');
+                refreshGameIcons();
             }
+        }
+
+        async function refreshGameIcons() {
+            const stamp = Date.now();
+            const gameIcons = document.querySelectorAll('.game-icon[data-manifest]');
+
+            gameIcons.forEach(async (img) => {
+                const manifestUrl = img.dataset.manifest;
+                if (!manifestUrl) return;
+
+                try {
+                    const separator = manifestUrl.includes('?') ? '&' : '?';
+                    const response = await fetch(`${manifestUrl}${separator}v=${stamp}`, { cache: 'no-store' });
+                    if (!response.ok) return;
+
+                    const manifest = await response.json();
+                    const icons = Array.isArray(manifest.icons) ? manifest.icons : [];
+                    const icon = icons.find(item => String(item.sizes || '').split(/\s+/).includes('192x192')) || icons[0];
+                    if (!icon || !icon.src) return;
+
+                    const iconUrl = new URL(icon.src, manifestUrl);
+                    iconUrl.searchParams.set('v', String(stamp));
+                    img.src = iconUrl.href;
+                } catch (error) {
+                    // Giữ icon dự phòng hiện tại nếu manifest tạm thời không tải được.
+                }
+            });
         }
 
         function goHome() {
@@ -542,6 +570,7 @@ body,button,a,input,span,div{
 
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('home').style.display = 'block';
+            refreshGameIcons();
         });
 
         document.querySelectorAll('button, a').forEach(el => {
