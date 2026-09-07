@@ -60,6 +60,15 @@
         .game-sublinks { margin: -2px 0 4px 18px; padding-left: 12px; border-left: 2px solid rgba(154, 91, 143, 0.20); }
         .game-sublinks .link-item { margin: 8px 0; }
 
+        /* Nhóm tài liệu / văn bản pháp luật trong Khoa Dược */
+        .legal-group { margin: 14px 0; }
+        .legal-group > summary { list-style: none; cursor: pointer; }
+        .legal-group > summary::-webkit-details-marker { display: none; }
+        .legal-group > summary .arrow { transition: transform 0.2s ease; }
+        .legal-group[open] > summary .arrow { transform: rotate(90deg); }
+        .legal-sublinks { margin: -2px 0 4px 18px; padding-left: 12px; border-left: 2px solid rgba(47, 138, 104, 0.22); }
+        .legal-sublinks .link-item { margin: 8px 0; }
+
         .qr-container { margin: 15px 0 5px; padding: 15px; background: rgba(255, 255, 255, 0.5); border-radius: 30px; display: inline-block; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid rgba(42, 107, 158, 0.15); }
         .qr-container img { width: 150px; height: 150px; display: block; margin: 0 auto; border-radius: 16px; background: white; padding: 8px; box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
         .qr-caption { margin-top: 8px; font-size: 0.95rem; font-weight: 600; color: #0a2a44; letter-spacing: 0.5px; }
@@ -456,6 +465,26 @@ body,button,a,input,span,div{
                 <span>TRA CỨU NHÓM THUỐC</span>
                 <span class="arrow"><i class="fas fa-arrow-right"></i></span>
             </a>
+            <details class="legal-group">
+                <summary class="link-item" title="Mở danh sách các văn bản pháp luật về Dược">
+                    <i class="fas fa-scale-balanced"></i>
+                    <span>CÁC VĂN BẢN PHÁP LUẬT VỀ DƯỢC</span>
+                    <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                </summary>
+                <div class="legal-sublinks">
+                    <a href="https://drive.google.com/file/d/1boku4f7mD0d1qUP1EQFwgdrdz7N-PAPx/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="link-item" title="MIMS 2025">
+                        <i class="fas fa-file-medical"></i>
+                        <span>MIMS 2025</span>
+                        <span class="arrow"><i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </a>
+                    <a href="https://thuvienphapluat.vn/hoi-dap-phap-luat/luat-duoc-moi-nhat-2025-va-van-ban-huong-dan-luat-duoc-gom-cac-van-ban-nao-138056803.html" target="_blank" rel="noopener noreferrer" class="link-item" title="Thư viện Pháp luật - Luật Dược 2025">
+                        <i class="fas fa-landmark"></i>
+                        <span>THƯ VIỆN PHÁP LUẬT</span>
+                        <span class="arrow"><i class="fas fa-arrow-up-right-from-square"></i></span>
+                    </a>
+                </div>
+            </details>
+
             <a href="https://truongphoto.github.io/truonggpp/" target="_blank" rel="noopener noreferrer" class="link-item" title="Game câu hỏi GPP">
                 <i class="fas fa-gamepad"></i> 
                 <span>GAME CÂU HỎI GPP</span>

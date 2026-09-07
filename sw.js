@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'gpp-pwa-v11-chatbot-update';
+const CACHE_VERSION = 'gpp-pwa-v13-duoc-van-ban';
 const APP_SHELL = [
   './',
   './index.html',
