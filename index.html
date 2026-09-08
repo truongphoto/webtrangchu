@@ -255,6 +255,79 @@ body{
     letter-spacing:0!important;
 }
 
+/* QR + ADMIN cùng một khung trên trang chủ */
+.home-access-panel{
+    display:grid!important;grid-template-columns:1fr 1fr!important;gap:0!important;width:100%!important;
+    border:1px solid var(--line)!important;border-radius:16px!important;overflow:hidden!important;
+    background:#f8fbfc!important;
+}
+.home-access-panel .qr-container{
+    border:0!important;border-radius:0!important;background:transparent!important;min-width:0!important;
+}
+.admin-container{
+    min-width:0!important;padding:13px 16px!important;display:flex!important;align-items:center!important;
+    justify-content:space-between!important;gap:12px!important;border-left:1px solid var(--line)!important;
+    background:#fbfcfd!important;transition:background .18s ease,transform .18s ease!important;
+}
+.admin-container:hover{background:#ffffff!important}
+.admin-meta{display:flex!important;align-items:center!important;gap:10px!important;min-width:0!important}
+.admin-icon{
+    width:38px!important;height:38px!important;flex:0 0 38px!important;border-radius:12px!important;
+    display:grid!important;place-items:center!important;background:#fff4e8!important;color:#a94f00!important;
+    border:1px solid #f1dcc7!important;font-size:1rem!important;transition:transform .18s ease!important;
+}
+.admin-container:hover .admin-icon{transform:translateY(-1px)!important}
+.admin-content{min-width:0!important;text-align:left!important}
+.admin-title{font-size:.78rem!important;font-weight:800!important;letter-spacing:.08em!important;color:#6d8491!important}
+.admin-open-btn{
+    min-height:34px!important;padding:0 12px!important;border:1px solid #d6e2e8!important;border-radius:999px!important;
+    background:#ffffff!important;color:var(--navy)!important;font-family:"Segoe UI",Arial,Helvetica,sans-serif!important;
+    font-size:.84rem!important;font-weight:800!important;cursor:pointer!important;display:inline-flex!important;
+    align-items:center!important;gap:7px!important;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,color .18s ease!important;
+    box-shadow:0 4px 10px rgba(30,72,98,.04)!important;white-space:nowrap!important;
+}
+.admin-open-btn:hover,.admin-open-btn:focus{
+    color:#a94f00!important;border-color:#e3c8ac!important;box-shadow:0 8px 18px rgba(169,79,0,.12)!important;
+    transform:translateY(-1px)!important;outline:none!important
+}
+
+/* Hộp nhập mật khẩu ADMIN */
+.admin-modal{
+    position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:18px;
+    background:rgba(7,28,42,.48);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+}
+.admin-modal.open{display:flex}
+.admin-dialog{
+    width:min(420px,100%);background:#fff;border-radius:18px;padding:22px;
+    box-shadow:0 24px 70px rgba(5,31,48,.28);border:1px solid rgba(255,255,255,.6);text-align:left;
+}
+.admin-dialog-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.admin-dialog-header .admin-dialog-icon{
+    width:46px;height:46px;border-radius:13px;display:grid;place-items:center;flex:0 0 46px;
+    background:#fff4e8;color:#a94f00;font-size:1.2rem;
+}
+.admin-dialog h3{margin:0;color:var(--navy);font-size:1.15rem}
+.admin-dialog p{margin:4px 0 0;color:var(--muted);font-size:.84rem;line-height:1.45}
+.admin-password-wrap{position:relative;margin-top:12px}
+.admin-password-input{
+    width:100%;height:46px;border:1px solid #cbdde6;border-radius:11px;padding:0 44px 0 13px;
+    font-family:"Segoe UI",Arial,Helvetica,sans-serif;font-size:1rem;color:var(--ink);outline:none;
+}
+.admin-password-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(44,113,149,.11)}
+.admin-toggle-password{
+    position:absolute;right:7px;top:50%;transform:translateY(-50%);width:34px;height:34px;border:0;border-radius:8px;
+    background:transparent;color:#6f8794;cursor:pointer;
+}
+.admin-error{min-height:20px;margin-top:7px;font-size:.80rem;font-weight:700;color:#b42318}
+.admin-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:8px}
+.admin-actions button{
+    min-height:40px;border-radius:10px;padding:8px 14px;font-family:"Segoe UI",Arial,Helvetica,sans-serif;
+    font-size:.88rem;font-weight:700;cursor:pointer;
+}
+.admin-cancel-btn{background:#fff;border:1px solid #cbdde6;color:var(--navy)}
+.admin-submit-btn{background:var(--navy);border:1px solid var(--navy);color:#fff}
+.admin-submit-btn:hover,.admin-submit-btn:focus{background:#1c4c68}
+
 /* Trang con / danh sách ứng dụng */
 .links-section{
     margin:20px 26px 8px!important;padding:22px!important;border-radius:20px!important;
@@ -332,6 +405,14 @@ body{
     .qr-container{padding:10px!important;gap:10px!important}
     .qr-container img{width:72px!important;height:72px!important}
     .qr-caption{font-size:.78rem!important}
+    .home-access-panel{grid-template-columns:1fr 1fr!important}
+    .home-access-panel .qr-container{flex-direction:column!important;align-items:flex-start!important;justify-content:center!important}
+    .admin-container{padding:10px!important;gap:8px!important;align-items:center!important}
+    .admin-meta{gap:8px!important}
+    .admin-icon{width:34px!important;height:34px!important;flex-basis:34px!important;font-size:.92rem!important;border-radius:10px!important}
+    .admin-content{text-align:left!important}
+    .admin-title{font-size:.72rem!important}
+    .admin-open-btn{min-height:30px!important;font-size:.76rem!important;padding:0 10px!important}
     .links-section{margin:14px 14px 5px!important;padding:15px!important;border-radius:16px!important}
     .links-section h2{font-size:1.02rem!important;margin-bottom:12px!important}
     .links-section h2 i{width:33px!important;height:33px!important;border-radius:9px!important}
@@ -387,7 +468,7 @@ body,button,a,input,span,div{
         <div class="header">
             <img src="logo.png" alt="Logo GPP Ngô Quang Trường" class="logo-img" loading="lazy" onerror="this.style.display='none'" />
             <span class="author-name">
-                <i class="fas fa-user-astronaut"></i> TRƯỜNG GPP: PHẦN MỀM NỘI BỘ NHÓM Y DƯỢC
+                <i class="fas fa-user-astronaut"></i> TRƯỜNG GPP: PHẦN MỀM NỘI BỘ NHÓM Y DƯỢC TIỀN GIANG
             </span>
         </div>
 
@@ -431,10 +512,24 @@ body,button,a,input,span,div{
                 </button>
             </div>
 
-            <div class="qr-container">
-                <img src="qr.png" alt="Mã QR truy cập trang" loading="lazy" onerror="this.style.display='none'" />
-                <div class="qr-caption">
-                    <i class="fas fa-qrcode"></i> Mở ứng dụng trên điện thoại
+            <div class="home-access-panel" aria-label="Truy cập nhanh">
+                <div class="qr-container">
+                    <img src="qr.png" alt="Mã QR truy cập trang" loading="lazy" onerror="this.style.display='none'" />
+                    <div class="qr-caption">
+                        <i class="fas fa-qrcode"></i> Mở ứng dụng trên điện thoại
+                    </div>
+                </div>
+
+                <div class="admin-container">
+                    <div class="admin-meta">
+                        <div class="admin-icon" aria-hidden="true"><i class="fas fa-lock"></i></div>
+                        <div class="admin-content">
+                            <div class="admin-title">ADMIN</div>
+                        </div>
+                    </div>
+                    <button type="button" class="admin-open-btn" id="adminOpenBtn" title="Mở khu vực ADMIN">
+                        <span>Truy cập</span> <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -556,6 +651,32 @@ body,button,a,input,span,div{
         </div>
     </div>
 
+    <div class="admin-modal" id="adminModal" aria-hidden="true">
+        <div class="admin-dialog" role="dialog" aria-modal="true" aria-labelledby="adminDialogTitle">
+            <div class="admin-dialog-header">
+                <div class="admin-dialog-icon" aria-hidden="true"><i class="fas fa-shield-halved"></i></div>
+                <div>
+                    <h3 id="adminDialogTitle">KHU VỰC ADMIN</h3>
+                    <p>Nhập mật khẩu để truy cập.</p>
+                </div>
+            </div>
+            <form id="adminLoginForm" autocomplete="off">
+                <label for="adminPassword" style="font-size:.82rem;font-weight:700;color:#294e64;">Mật khẩu</label>
+                <div class="admin-password-wrap">
+                    <input id="adminPassword" class="admin-password-input" type="password" inputmode="text" autocomplete="current-password" placeholder="Nhập mật khẩu" />
+                    <button type="button" class="admin-toggle-password" id="adminTogglePassword" aria-label="Hiện mật khẩu" title="Hiện/ẩn mật khẩu">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div class="admin-error" id="adminError" aria-live="polite"></div>
+                <div class="admin-actions">
+                    <button type="button" class="admin-cancel-btn" id="adminCancelBtn">Hủy</button>
+                    <button type="submit" class="admin-submit-btn"><i class="fas fa-unlock-keyhole"></i> Truy cập</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         function showLinks(type) {
             document.getElementById('home').style.display = 'none';
@@ -614,6 +735,79 @@ body,button,a,input,span,div{
                 this.click();
             }, { passive: false });
         });
+
+        // Khu vực ADMIN: yêu cầu mật khẩu trước khi chuyển đến thư mục quản trị.
+        const ADMIN_TARGET_URL = 'https://drive.google.com/drive/folders/1RAZh6ktNSO2dMDmzmmqdCmmn6swr-03r?usp=sharing';
+        const ADMIN_PASSWORD = 'truong12011981';
+        const adminOpenBtn = document.getElementById('adminOpenBtn');
+        const adminModal = document.getElementById('adminModal');
+        const adminLoginForm = document.getElementById('adminLoginForm');
+        const adminPassword = document.getElementById('adminPassword');
+        const adminError = document.getElementById('adminError');
+        const adminCancelBtn = document.getElementById('adminCancelBtn');
+        const adminTogglePassword = document.getElementById('adminTogglePassword');
+
+        function openAdminModal() {
+            if (!adminModal) return;
+            adminModal.classList.add('open');
+            adminModal.setAttribute('aria-hidden', 'false');
+            if (adminError) adminError.textContent = '';
+            if (adminPassword) {
+                adminPassword.value = '';
+                adminPassword.type = 'password';
+                setTimeout(() => adminPassword.focus(), 50);
+            }
+        }
+
+        function closeAdminModal() {
+            if (!adminModal) return;
+            adminModal.classList.remove('open');
+            adminModal.setAttribute('aria-hidden', 'true');
+            if (adminPassword) adminPassword.value = '';
+            if (adminError) adminError.textContent = '';
+        }
+
+        if (adminOpenBtn) adminOpenBtn.addEventListener('click', openAdminModal);
+        if (adminCancelBtn) adminCancelBtn.addEventListener('click', closeAdminModal);
+
+        if (adminModal) {
+            adminModal.addEventListener('click', (event) => {
+                if (event.target === adminModal) closeAdminModal();
+            });
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && adminModal && adminModal.classList.contains('open')) {
+                closeAdminModal();
+            }
+        });
+
+        if (adminTogglePassword && adminPassword) {
+            adminTogglePassword.addEventListener('click', () => {
+                const show = adminPassword.type === 'password';
+                adminPassword.type = show ? 'text' : 'password';
+                adminTogglePassword.innerHTML = show ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
+                adminTogglePassword.setAttribute('aria-label', show ? 'Ẩn mật khẩu' : 'Hiện mật khẩu');
+                adminPassword.focus();
+            });
+        }
+
+        if (adminLoginForm) {
+            adminLoginForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const enteredPassword = adminPassword ? adminPassword.value : '';
+                if (enteredPassword === ADMIN_PASSWORD) {
+                    closeAdminModal();
+                    window.open(ADMIN_TARGET_URL, '_blank', 'noopener,noreferrer');
+                } else {
+                    if (adminError) adminError.textContent = 'Mật khẩu không đúng. Vui lòng thử lại.';
+                    if (adminPassword) {
+                        adminPassword.select();
+                        adminPassword.focus();
+                    }
+                }
+            });
+        }
     </script>
     <script>
         let deferredInstallPrompt = null;

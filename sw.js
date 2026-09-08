@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'gpp-pwa-v13-duoc-van-ban';
+const CACHE_VERSION = 'gpp-pwa-v15-admin-refined';
 const APP_SHELL = [
   './',
   './index.html',
