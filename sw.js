@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'gpp-pwa-v16-admin-nosave';
+const CACHE_VERSION = 'gpp-pwa-v17-featured-portals';
 const APP_SHELL = [
   './',
   './index.html',
@@ -9,6 +9,7 @@ const APP_SHELL = [
   './app-icon-512-v3.png',
   './app-icon-maskable-512-v3.png',
   './favicon-32-v3.png',
+  './icon-cong-dong-y-duoc.png',
   './chatbot.css',
   './chatbot.js'
 ];

@@ -240,6 +240,42 @@ body{
     box-shadow:0 16px 32px rgba(30,72,98,.13)!important;border-color:#cbdde6!important;
 }
 
+/* Hai cổng truy cập mới: tin tức/pháp chế và phòng chat cộng đồng */
+.featured-portals{
+    margin:0 0 20px!important;padding:16px!important;border:1px solid var(--line)!important;
+    border-radius:18px!important;background:linear-gradient(135deg,#f8fbfc 0%,#f4f9f7 100%)!important;
+}
+.featured-portals-title{
+    margin:0 0 11px!important;display:flex!important;align-items:center!important;gap:8px!important;
+    color:var(--navy)!important;font-size:.83rem!important;font-weight:800!important;letter-spacing:.06em!important;
+    text-transform:uppercase!important;
+}
+.featured-portals-title i{color:var(--green)!important}
+.featured-portals-grid{
+    display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:11px!important;
+}
+.portal-card{
+    min-width:0!important;min-height:78px!important;padding:12px 13px!important;display:flex!important;
+    align-items:center!important;gap:11px!important;border:1px solid #d8e5eb!important;border-radius:14px!important;
+    background:#fff!important;color:var(--ink)!important;text-decoration:none!important;text-align:left!important;
+    box-shadow:0 5px 15px rgba(30,72,98,.05)!important;
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
+}
+.portal-card:hover,.portal-card:focus{
+    transform:translateY(-2px)!important;border-color:#b8d4df!important;
+    box-shadow:0 10px 22px rgba(30,72,98,.10)!important;outline:none!important;
+}
+.portal-card>img{
+    width:48px!important;height:48px!important;flex:0 0 48px!important;object-fit:contain!important;
+    border-radius:12px!important;background:#fff!important;border:1px solid #e1e9ed!important;padding:3px!important;
+}
+.portal-card-copy{display:flex!important;flex-direction:column!important;gap:3px!important;min-width:0!important}
+.portal-card-copy strong{font-size:.93rem!important;line-height:1.25!important;color:var(--navy)!important}
+.portal-card-copy small{font-size:.74rem!important;line-height:1.3!important;color:var(--muted)!important;font-weight:600!important}
+.portal-card>.portal-arrow{margin-left:auto!important;flex:0 0 auto!important;color:#8ca2ae!important;font-size:.85rem!important}
+.portal-card.news{border-top:3px solid var(--blue)!important}
+.portal-card.community{border-top:3px solid var(--green)!important}
+
 /* QR gọn và hiện đại */
 .qr-container{
     margin:0!important;padding:13px 16px!important;width:100%!important;display:flex!important;
@@ -402,6 +438,13 @@ body{
         flex-direction:row!important;justify-content:flex-start!important;font-size:.96rem!important;gap:12px!important;
     }
     .choice-btn i{width:42px!important;height:42px!important;border-radius:11px!important;font-size:1.22rem!important}
+    .featured-portals{padding:11px!important;margin-bottom:14px!important;border-radius:15px!important}
+    .featured-portals-title{font-size:.73rem!important;margin-bottom:9px!important}
+    .featured-portals-grid{grid-template-columns:1fr!important;gap:8px!important}
+    .portal-card{min-height:68px!important;padding:9px 10px!important;border-radius:12px!important;gap:9px!important}
+    .portal-card>img{width:42px!important;height:42px!important;flex-basis:42px!important;border-radius:10px!important}
+    .portal-card-copy strong{font-size:.82rem!important}
+    .portal-card-copy small{font-size:.68rem!important}
     .qr-container{padding:10px!important;gap:10px!important}
     .qr-container img{width:72px!important;height:72px!important}
     .qr-caption{font-size:.78rem!important}
@@ -511,6 +554,30 @@ body,button,a,input,span,div{
                     <i class="fas fa-mug-hot"></i> THƯ GIÃN
                 </button>
             </div>
+
+            <section class="featured-portals" aria-labelledby="featuredPortalsTitle">
+                <h2 class="featured-portals-title" id="featuredPortalsTitle">
+                    <i class="fas fa-link" aria-hidden="true"></i> Kết nối &amp; cập nhật
+                </h2>
+                <div class="featured-portals-grid">
+                    <a class="portal-card news" href="https://tintucyte.whf.bz/" target="_blank" rel="noopener noreferrer" title="Mở Tin tức &amp; Pháp chế Y khoa">
+                        <img src="https://drive.google.com/thumbnail?id=1Gt4vFCYrzM0DRR1GkTkvfHYSHZ__z984&amp;sz=w192" alt="Biểu tượng Tin tức &amp; Pháp chế Y khoa" loading="lazy" />
+                        <span class="portal-card-copy">
+                            <strong>Tin tức &amp; Pháp chế Y khoa</strong>
+                            <small>Tin Y-Dược · Cảnh báo · Văn bản pháp luật</small>
+                        </span>
+                        <i class="fas fa-arrow-up-right-from-square portal-arrow" aria-hidden="true"></i>
+                    </a>
+                    <a class="portal-card community" href="https://chat-chi-ruby.vercel.app/" target="_blank" rel="noopener noreferrer" title="Mở Phòng chat cộng đồng">
+                        <img src="./icon-cong-dong-y-duoc.png" alt="Biểu tượng Cộng đồng Y-Dược" loading="lazy" />
+                        <span class="portal-card-copy">
+                            <strong>Phòng chat cộng đồng</strong>
+                            <small>Kết nối và trao đổi trong Cộng đồng Y-Dược</small>
+                        </span>
+                        <i class="fas fa-arrow-up-right-from-square portal-arrow" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </section>
 
             <div class="home-access-panel" aria-label="Truy cập nhanh">
                 <div class="qr-container">
