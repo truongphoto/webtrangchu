@@ -180,10 +180,27 @@ body{
 .contact{
     margin:0 26px!important;padding:8px 12px!important;border-radius:12px!important;gap:18px!important;
     justify-content:flex-start!important;background:#fff!important;border:1px solid var(--line)!important;
-    box-shadow:none!important;color:var(--navy)!important;
+    box-shadow:none!important;color:var(--navy)!important;position:relative!important;
 }
 .contact a{color:var(--navy)!important;font-weight:700!important}
 .contact a:hover,.contact a:focus{color:var(--blue)!important;text-decoration:none!important}
+.contact .install-app-wrap{
+    margin:0 0 0 auto!important;display:inline-flex!important;flex-direction:row!important;
+    align-items:center!important;gap:0!important;
+}
+.contact .install-app-btn{
+    min-height:34px!important;padding:7px 12px!important;border-radius:9px!important;
+    font-size:.79rem!important;box-shadow:none!important;white-space:nowrap!important;
+}
+.contact .install-app-btn:hover,.contact .install-app-btn:focus{transform:translateY(-1px)!important}
+.contact .install-app-hint{min-height:0!important}
+.contact .install-app-hint:empty{display:none!important}
+.contact .install-app-hint:not(:empty){
+    position:fixed!important;right:16px!important;bottom:16px!important;z-index:11000!important;
+    width:min(360px,calc(100vw - 32px))!important;padding:10px 12px!important;border-radius:10px!important;
+    background:#123b56!important;color:#fff!important;box-shadow:0 12px 28px rgba(18,59,86,.24)!important;
+    font-size:.78rem!important;line-height:1.4!important;
+}
 .service-info{
     margin:9px 26px 0!important;padding:0 2px!important;font-size:.82rem!important;
     font-style:normal!important;font-weight:600!important;color:var(--muted)!important;
@@ -427,6 +444,10 @@ body{
     .logo-img{height:48px!important;max-width:128px!important}
     .author-name{min-width:0!important;flex:1!important;font-size:.78rem!important;padding:8px 10px!important;border-radius:11px!important}
     .contact{margin:0 14px!important;padding:7px 9px!important;gap:10px!important;font-size:.76rem!important}
+    .contact .install-app-wrap{margin:0 0 0 auto!important}
+    .contact .install-app-btn{min-height:31px!important;padding:6px 9px!important;font-size:.70rem!important}
+    .contact .install-app-btn span{font-size:0!important}
+    .contact .install-app-btn span::after{content:"Cài ứng dụng"!important;font-size:.70rem!important}
     .service-info{margin:7px 14px 0!important;font-size:.70rem!important}
     #home{padding:2px 14px 5px!important}
     .main-title{margin:20px 0 13px!important;font-size:1.17rem!important}
@@ -469,6 +490,31 @@ body{
 @media(min-width:761px) and (max-width:980px){
     .choice-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:11px!important}
     .choice-btn{min-height:118px!important;padding:17px 13px!important;font-size:1rem!important}
+}
+
+/* Thu gọn trang chủ trên màn hình máy tính để hạn chế phải cuộn trang */
+@media(min-width:761px){
+    body{padding:10px 16px 16px!important}
+    .header{padding:12px 26px 6px!important;gap:14px!important}
+    .logo-img{height:54px!important}
+    .author-name{padding:8px 13px!important;font-size:.94rem!important}
+    .contact{padding:6px 10px!important}
+    .service-info{margin-top:6px!important}
+    #home{padding-top:0!important}
+    .main-title{margin:15px 0 11px!important;font-size:1.34rem!important}
+    .choice-grid{gap:10px!important;margin-bottom:12px!important}
+    .choice-btn{min-height:96px!important;padding:13px 15px!important;gap:8px!important;font-size:1rem!important}
+    .choice-btn i{width:44px!important;height:44px!important;border-radius:12px!important;font-size:1.30rem!important}
+    .featured-portals{margin-bottom:12px!important;padding:11px!important}
+    .featured-portals-title{margin-bottom:8px!important;font-size:.76rem!important}
+    .portal-card{min-height:62px!important;padding:8px 10px!important}
+    .portal-card>img{width:40px!important;height:40px!important;flex-basis:40px!important;border-radius:10px!important}
+    .portal-card-copy strong{font-size:.87rem!important}
+    .portal-card-copy small{font-size:.69rem!important}
+    .qr-container{padding:8px 12px!important}
+    .qr-container img{width:68px!important;height:68px!important}
+    .admin-container{padding:8px 12px!important}
+    .footer{margin-top:11px!important;padding-top:10px!important}
 }
 
 /* Ổn định font tiếng Việt */
@@ -524,6 +570,12 @@ body,button,a,input,span,div{
                 <i class="fab fa-zalo"></i> 
                 <a href="https://zalo.me/truongphotoart" target="_blank" title="Nhắn tin Zalo">TRUONG GPP</a>
             </span>
+            <div class="install-app-wrap" id="installAppWrap">
+                <button type="button" id="installAppBtn" class="install-app-btn" title="Cài ứng dụng TRƯỜNG GPP">
+                    <i class="fas fa-download"></i> <span>📲 Cài ứng dụng</span>
+                </button>
+                <div id="installAppHint" class="install-app-hint" aria-live="polite"></div>
+            </div>
         </div>
 
         <div class="service-info">
@@ -534,13 +586,6 @@ body,button,a,input,span,div{
         <div id="home">
             <div class="main-title">
                 <i class="fas fa-layer-group"></i> CHỌN NỘI DUNG CỦA BẠN <i class="fas fa-heart"></i>
-            </div>
-
-            <div class="install-app-wrap" id="installAppWrap">
-                <button type="button" id="installAppBtn" class="install-app-btn" title="Cài ứng dụng TRƯỜNG GPP">
-                    <i class="fas fa-download"></i> <span>📲 Cài ứng dụng</span>
-                </button>
-                <div id="installAppHint" class="install-app-hint" aria-live="polite"></div>
             </div>
 
             <div class="choice-grid">

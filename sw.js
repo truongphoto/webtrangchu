@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'gpp-pwa-v17-featured-portals';
+const CACHE_VERSION = 'gpp-pwa-v18-compact-install-header';
 const APP_SHELL = [
   './',
   './index.html',
