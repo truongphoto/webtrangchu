@@ -14,18 +14,15 @@
 #truong-ai-root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--tq-ink)}
 .truong-ai-fab{position:fixed;right:22px;bottom:22px;z-index:99998;display:flex;align-items:center;gap:10px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
 .truong-ai-fab.is-dragging{cursor:grabbing}
-.truong-ai-hint{position:relative;white-space:nowrap;background:linear-gradient(135deg,#0b6f98,#178ab4);color:#fff;border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:9px 13px;font-size:12px;font-weight:800;box-shadow:0 8px 24px rgba(11,111,152,.24);letter-spacing:.05px;animation:tqHintBreath 3.8s ease-in-out infinite}
+.truong-ai-hint{position:relative;white-space:nowrap;background:linear-gradient(135deg,#0b6f98,#178ab4);color:#fff;border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:9px 13px;font-size:12px;font-weight:800;box-shadow:0 6px 16px rgba(11,111,152,.20);letter-spacing:.05px}
 .truong-ai-hint:after{content:"";position:absolute;right:-5px;top:50%;width:10px;height:10px;background:#1685ad;transform:translateY(-50%) rotate(45deg)}
-.truong-ai-launcher{position:relative;width:62px;height:62px;flex:0 0 62px;border:0;border-radius:50%;background:#fff;box-shadow:0 10px 30px rgba(0,77,105,.28);cursor:pointer;padding:8px;transition:.2s box-shadow ease,.2s transform ease;transform-origin:center bottom;animation:tqLauncherBounce 4.6s cubic-bezier(.22,.8,.28,1) infinite}
-.truong-ai-launcher:before{content:"";position:absolute;inset:-6px;border:2px solid rgba(11,111,152,.26);border-radius:50%;opacity:0;animation:tqRing 4.6s ease-out infinite;pointer-events:none}
+.truong-ai-launcher{position:relative;width:62px;height:62px;flex:0 0 62px;border:0;border-radius:50%;background:#fff;box-shadow:0 8px 22px rgba(0,77,105,.24);cursor:pointer;padding:8px;transition:.2s box-shadow ease,.2s transform ease;transform-origin:center bottom}
+.truong-ai-launcher:before{content:"";position:absolute;inset:-5px;border:2px solid rgba(11,111,152,.30);border-radius:50%;opacity:.5;pointer-events:none}
 .truong-ai-launcher:hover{box-shadow:0 14px 34px rgba(0,77,105,.34)}
 .truong-ai-launcher img{width:100%;height:100%;object-fit:contain;border-radius:50%;pointer-events:none}
-.truong-ai-launcher .badge{position:absolute;right:1px;top:1px;width:14px;height:14px;border-radius:50%;background:#27b95f;border:3px solid #fff;box-shadow:0 0 0 0 rgba(39,185,95,.32);animation:tqBadge 2.4s ease-out infinite}
-@keyframes tqBadge{0%,55%,100%{box-shadow:0 0 0 0 rgba(39,185,95,.28)}75%{box-shadow:0 0 0 6px rgba(39,185,95,0)}}
-
-@keyframes tqLauncherBounce{0%,68%,100%{transform:translateY(0) scale(1,1)}72%{transform:translateY(-10px) scale(.97,1.04)}76%{transform:translateY(0) scale(1.1,.9)}80%{transform:translateY(-6px) scale(.98,1.03)}84%{transform:translateY(0) scale(1.06,.94)}88%{transform:translateY(-2px) scale(.995,1.01)}92%{transform:translateY(0) scale(1,1)}}
-@keyframes tqHintBreath{0%,65%,100%{transform:translateY(0);box-shadow:0 8px 24px rgba(11,111,152,.22)}75%{transform:translateY(-2px);box-shadow:0 10px 30px rgba(11,111,152,.34)}85%{transform:translateY(0)}}
-@keyframes tqRing{0%,68%{opacity:0;transform:scale(.88)}74%{opacity:.58}90%{opacity:0;transform:scale(1.25)}100%{opacity:0}}
+.truong-ai-launcher .badge{position:absolute;right:1px;top:1px;width:14px;height:14px;border-radius:50%;background:#27b95f;border:3px solid #fff}
+@keyframes tqAttentionNudge{0%,100%{transform:translateY(0) rotate(0)}35%{transform:translateY(-6px) rotate(-3deg)}70%{transform:translateY(0) rotate(2deg)}}
+.truong-ai-fab.is-attention .truong-ai-launcher{animation:tqAttentionNudge .72s ease-out 2}
 #truong-ai-root.chat-open .truong-ai-launcher,#truong-ai-root.chat-open .truong-ai-launcher:before,#truong-ai-root.chat-open .truong-ai-hint,.truong-ai-fab.is-dragging .truong-ai-launcher,.truong-ai-fab.is-dragging .truong-ai-launcher:before,.truong-ai-fab.is-dragging .truong-ai-hint,.truong-ai-fab:hover .truong-ai-launcher,.truong-ai-fab:hover .truong-ai-launcher:before,.truong-ai-fab:hover .truong-ai-hint{animation:none!important}
 .truong-ai-panel{position:fixed;right:22px;bottom:96px;width:min(440px,calc(100vw - 24px));height:min(680px,calc(100vh - 118px));min-width:350px;min-height:470px;max-width:calc(100vw - 16px);max-height:calc(100vh - 16px);background:var(--tq-card);border:1px solid rgba(11,111,152,.14);border-radius:22px;box-shadow:var(--tq-shadow);z-index:99999;overflow:hidden;display:none;flex-direction:column;animation:tqIn .18s ease-out;resize:both}
 .truong-ai-panel.is-open{display:flex}
@@ -74,4 +71,5 @@
 .truong-ai-contact{font-size:10.5px;text-align:center;color:#365c6a;margin-top:3px;font-weight:650}
 .truong-ai-contact a{color:var(--tq-blue);text-decoration:none}
 @media(max-width:520px){.truong-ai-panel{width:calc(100vw - 12px);height:calc(100vh - 88px);min-width:0;min-height:0;max-width:none;max-height:none;border-radius:18px;resize:none}.truong-ai-fab{right:12px;bottom:12px;gap:8px}.truong-ai-launcher{width:58px;height:58px;flex-basis:58px}.truong-ai-hint{font-size:11px;padding:8px 10px;max-width:190px;overflow:hidden;text-overflow:ellipsis}.truong-ai-header{padding:12px}.truong-ai-bubble{max-width:88%}.truong-ai-actions{gap:4px;padding:7px 7px}.truong-ai-chip{font-size:9.6px;padding:5px 6px}}
-@media(prefers-reduced-motion:reduce){.truong-ai-launcher,.truong-ai-launcher:before,.truong-ai-hint,.truong-ai-launcher .badge{animation:none!important}}
+html.truong-ai-page-hidden *{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){#truong-ai-root *,#truong-ai-root *::before,#truong-ai-root *::after{animation:none!important;transition:none!important}}

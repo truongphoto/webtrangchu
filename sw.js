@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'gpp-pwa-v18-compact-install-header';
+const CACHE_VERSION = 'gpp-pwa-v20-medical-identity';
 const APP_SHELL = [
   './',
   './index.html',

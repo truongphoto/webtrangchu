@@ -64,6 +64,38 @@
   const input = root.querySelector('.truong-ai-input');
   const sendBtn = root.querySelector('.truong-ai-send');
 
+  // Gây chú ý đúng thời điểm, không chạy animation liên tục gây tải GPU.
+  let attentionTimer = null;
+  let attentionEndTimer = null;
+  let chatWasOpened = false;
+
+  function scheduleAttention(delay = 55000){
+    clearTimeout(attentionTimer);
+    if(chatWasOpened) return;
+    attentionTimer = setTimeout(runAttention, delay);
+  }
+
+  function runAttention(){
+    if(document.hidden || panel.classList.contains('is-open') || chatWasOpened){
+      scheduleAttention(55000);
+      return;
+    }
+
+    fab.classList.remove('is-attention');
+    void fab.offsetWidth;
+    fab.classList.add('is-attention');
+    clearTimeout(attentionEndTimer);
+    attentionEndTimer = setTimeout(()=>fab.classList.remove('is-attention'), 1600);
+    scheduleAttention(55000);
+  }
+
+  scheduleAttention(3000);
+
+  document.addEventListener('visibilitychange',()=>{
+    document.documentElement.classList.toggle('truong-ai-page-hidden', document.hidden);
+    if(!document.hidden && !chatWasOpened) scheduleAttention(5000);
+  });
+
   function esc(s='') {
     return s.replace(/[&<>"']/g, c => ({
       '&':'&amp;',
@@ -391,6 +423,10 @@
   }
 
   function openPanel(){
+    chatWasOpened=true;
+    clearTimeout(attentionTimer);
+    clearTimeout(attentionEndTimer);
+    fab.classList.remove('is-attention');
     panel.classList.add('is-open');
     root.classList.add('chat-open');
 
